@@ -4,8 +4,8 @@ import * as React from 'react';
 import { css } from '../../../../styled-system/css';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { createStyleContext } from '@shadow-panda/style-context';
-import { styled } from '../../../../@shadow/panda/styled-system/jsx';
-import { select, icon } from '../../../../@shadow/panda/styled-system/recipes';
+import { styled } from '@shadow/panda/styled-system/jsx';
+import { select, icon } from '@shadow/panda/styled-system/recipes';
 import { DownArrow, Check } from '@repo/components/atoms/icons';
 
 const { withProvider, withContext } = createStyleContext(select);

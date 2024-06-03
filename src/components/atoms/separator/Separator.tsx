@@ -2,9 +2,9 @@
 
 import * as React from 'react';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
-import { styled } from '../../../../@shadow/panda/styled-system/jsx';
-import { cx } from '../../../../@shadow/panda/styled-system/css';
-import { separator } from '../../../../@shadow/panda/styled-system/recipes';
+import { styled } from '@shadow/panda/styled-system/jsx';
+import { cx } from '@shadow/panda/styled-system/css';
+import { separator } from '@shadow/panda/styled-system/recipes';
 
 const BaseSeparator = React.forwardRef<
   React.ElementRef<typeof SeparatorPrimitive.Root>,
