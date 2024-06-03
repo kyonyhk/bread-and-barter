@@ -196,8 +196,8 @@ export interface UtilityValues {
 	srOnly: boolean;
 	debug: boolean;
 	containerName: CssProperties["containerName"];
-	colorPalette: "current" | "black" | "white" | "transparent" | "rose" | "pink" | "fuchsia" | "purple" | "violet" | "indigo" | "blue" | "sky" | "cyan" | "teal" | "emerald" | "green" | "lime" | "yellow" | "amber" | "orange" | "red" | "neutral" | "stone" | "zinc" | "gray" | "slate";
-	textStyle: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl" | "8xl" | "9xl";
+	colorPalette: "current" | "transparent" | "rose" | "pink" | "fuchsia" | "purple" | "violet" | "indigo" | "blue" | "sky" | "cyan" | "teal" | "emerald" | "green" | "lime" | "yellow" | "amber" | "orange" | "red" | "neutral" | "stone" | "zinc" | "gray" | "slate" | "yellow100" | "yellow80" | "yellow50" | "yellow20" | "yellow10" | "yellow5" | "altyellow" | "green100" | "green80" | "green50" | "green20" | "green10" | "green5" | "altgreen" | "red100" | "red80" | "red50" | "red20" | "red10" | "red5" | "altred" | "black" | "white";
+	textStyle: "heading1" | "heading2" | "heading3" | "heading4" | "subheading1" | "subheading2" | "subheading3" | "subheading4" | "subheading5" | "paragraph1" | "paragraph2" | "paragraph3" | "paragraph4";
 }
 
 

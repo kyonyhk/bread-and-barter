@@ -21,6 +21,14 @@
       "@repo/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "typings.d.ts",
+    "src",
+    "styled-system"
+  ],
   "exclude": ["node_modules"]
 }
