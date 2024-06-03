@@ -204,6 +204,10 @@ export default defineConfig({
   // The output directory for your css system
   emitPackage: true,
   outdir: '@shadow/panda/styled-system',
-  importMap: {},
+  importMap: {
+    css: '@shadow/panda/css',
+    recipes: '@shadow/panda/recipes',
+    patterns: '@shadow/panda/patterns',
+  },
   jsxFramework: 'react',
 });
