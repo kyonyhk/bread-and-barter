@@ -9,16 +9,10 @@ import {
 import Image from 'next/image';
 
 interface VideoBlockProps {
-  children: string;
-  video: string;
-  courseName: string;
-  teacher: string;
-  profilePic: string;
-  genre: string;
-  rating: ReactNode;
+  children: ReactNode;
 }
 
-export default function VideoBlock({ children }: VideoBlockProps) {
+export default function VideoBlock() {
   return (
     <div
       className={css({

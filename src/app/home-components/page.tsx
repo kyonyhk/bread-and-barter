@@ -24,7 +24,7 @@ export default function HomeComponents() {
         Home Components
       </div>
       <HStack className={css({ justifyContent: 'flex-start' })}>
-        <VideoBlock courseName="Course Name" teacher="Teacher" />
+        <VideoBlock />
         <PhotoBlock />
         <CourseProfileTile />
       </HStack>

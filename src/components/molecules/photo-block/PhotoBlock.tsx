@@ -9,16 +9,10 @@ import {
 import Image from 'next/image';
 
 interface PhotoBlockProps {
-  children: string;
-  video: string;
-  courseName: string;
-  teacher: string;
-  profilePic: string;
-  genre: string;
-  rating: ReactNode;
+  children: ReactNode;
 }
 
-export default function PhotoBlock({ children }: PhotoBlockProps) {
+export default function PhotoBlock() {
   return (
     <div
       className={css({
