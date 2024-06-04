@@ -284,7 +284,7 @@ export default function Home() {
           </ButtonLarge>
 
           {/* No Icon Button */}
-          <ButtonLarge>Button No Icon</ButtonLarge>
+          <ButtonLarge>Large</ButtonLarge>
         </div>
 
         {/* Components Column 2 */}

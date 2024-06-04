@@ -13,7 +13,7 @@ export default function ProfilePopup() {
         flexDirection: 'column',
         gap: '24px',
         borderWidth: '1px',
-        borderColor: 'yellow20',
+        borderColor: 'yellow100',
         borderRadius: '30px',
         padding: '24px',
         bg: 'yellow5',
@@ -26,7 +26,12 @@ export default function ProfilePopup() {
         className={css({ display: 'flex', flexDirection: 'row', gap: '8px' })}
       >
         <Avatar
-          className={css({ w: '80px', h: '80px', borderColor: 'yellow50' })}
+          className={css({
+            w: '80px',
+            h: '80px',
+            borderWidth: '1px',
+            borderColor: 'yellow50',
+          })}
         >
           <AvatarImage
             src="https://github.com/nanopx.png"

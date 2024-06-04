@@ -4,6 +4,7 @@ import ButtonMedium from '@repo/components/atoms/buttons/ButtonMedium';
 import ButtonLarge from '@repo/components/atoms/buttons/ButtonLarge';
 import ButtonNoBorder from '@repo/components/atoms/buttons/ButtonNoBorder';
 import { Minus, LeftArrow, RightArrow } from '@repo/components/atoms/icons';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -18,50 +19,22 @@ export default function Home() {
         padding: '40px',
       })}
     >
-      <div className={css({ color: 'white', textStyle: 'heading4' })}>
-        Icons
-      </div>
-      <div
-        className={css({ display: 'flex', flexDirection: 'row', gap: '8px' })}
-      >
-        <Minus className={css({ h: '24px', w: '24px' })} />
-        <RightArrow className={css({ h: '24px', w: '24px' })} />
-        <LeftArrow className={css({ h: '24px', w: '24px' })} />
-      </div>
+      <Link href="/components">
+        <div
+          className={css({
+            textStyle: 'heading4',
+            color: 'yellow100',
+          })}
+        >
+          Components - Atoms
+        </div>
+      </Link>
 
-      {/* Components */}
-      <div
-        className={css({
-          color: 'white',
-          textStyle: 'heading4',
-        })}
-      >
-        Components
-      </div>
-
-      {/* Button No Border */}
-      <ButtonNoBorder>
-        <Minus className={css({ h: '24px', w: '24px' })} />
-        Add Timeslot
-      </ButtonNoBorder>
-
-      {/* Small Button */}
-      <ButtonSmall>Small</ButtonSmall>
-
-      {/* Medium Button */}
-      <ButtonMedium>
-        Medium
-        <RightArrow className={css({ h: '24px', w: '24px' })} />
-      </ButtonMedium>
-
-      {/* Large Button */}
-      <ButtonLarge>
-        Large
-        <RightArrow className={css({ h: '24px', w: '24px' })} />
-      </ButtonLarge>
-      <ButtonLarge>Button No Icon</ButtonLarge>
-
-      <div></div>
+      <Link href="/home-components">
+        <div className={css({ textStyle: 'heading4', color: 'yellow100' })}>
+          Components - Home
+        </div>
+      </Link>
     </div>
   );
 }
