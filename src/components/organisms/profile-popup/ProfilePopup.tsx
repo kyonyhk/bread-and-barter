@@ -13,7 +13,7 @@ export default function ProfilePopup() {
         flexDirection: 'column',
         gap: '24px',
         borderWidth: '1px',
-        borderColor: 'yellow100',
+        borderColor: 'yellow20',
         borderRadius: '30px',
         padding: '24px',
         bg: 'yellow5',
@@ -29,8 +29,6 @@ export default function ProfilePopup() {
           className={css({
             w: '80px',
             h: '80px',
-            borderWidth: '1px',
-            borderColor: 'yellow50',
           })}
         >
           <AvatarImage

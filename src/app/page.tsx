@@ -12,7 +12,7 @@ export default function Home() {
       className={css({
         w: 'full',
         h: '100vh',
-        backgroundColor: 'black',
+        backgroundColor: '#111111',
         display: 'flex',
         flexDirection: 'column',
         gap: '40px',
