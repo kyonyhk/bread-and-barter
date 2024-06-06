@@ -1,12 +1,11 @@
-import Image from 'next/image';
+import { Avatar } from '@repo/components/atoms/avatar';
 import { css } from '../../../../styled-system/css';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@repo/components/atoms/avatar';
 
-export default function CourseHero() {
+interface CourseHeroProps {
+  username: string;
+}
+
+export default function CourseHero({ username }: CourseHeroProps) {
   return (
     <div
       className={css({
@@ -28,10 +27,11 @@ export default function CourseHero() {
           gap: '8px',
         })}
       >
-        <Avatar>
-          <AvatarImage src="https://github.com/nanopx.png" alt="@nanopx" />
-          <AvatarFallback>NP</AvatarFallback>
-        </Avatar>
+        <Avatar
+          name={username}
+          src="/images/profile-pic.png"
+          className={css({ textStyle: 'subheading3' })}
+        />
         <div></div>
       </div>
     </div>
