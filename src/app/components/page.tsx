@@ -1,41 +1,32 @@
 'use client';
 
-import { css } from '../../../styled-system/css';
-import Tag from '@repo/components/atoms/tags/Tag';
-import ButtonSmall from '@repo/components/atoms/buttons/ButtonSmall';
-import ButtonMedium from '@repo/components/atoms/buttons/ButtonMedium';
 import ButtonLarge from '@repo/components/atoms/buttons/ButtonLarge';
+import ButtonMedium from '@repo/components/atoms/buttons/ButtonMedium';
 import ButtonNoBorder from '@repo/components/atoms/buttons/ButtonNoBorder';
+import ButtonSmall from '@repo/components/atoms/buttons/ButtonSmall';
 import {
-  UpArrow,
-  DownArrow,
-  LeftArrow,
-  RightArrow,
-  Minus,
-  Plus,
   Cancel,
   Check,
-  FilledStar,
-  Star,
-  Preview,
-  Edit,
-  Save,
   Delete,
+  DownArrow,
+  Edit,
   FileDownload,
+  FilledStar,
   Folder,
+  LeftArrow,
+  Minus,
   Play,
+  Plus,
+  Preview,
+  RightArrow,
+  Save,
+  Star,
+  UpArrow,
   Upload,
 } from '@repo/components/atoms/icons';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@repo/components/atoms/select/Select';
-import { TextArea } from '@repo/components/atoms/textarea/TextArea';
+import Tag from '@repo/components/atoms/tags/Tag';
+import { css } from '../../../styled-system/css';
 import { HStack } from '../../../styled-system/jsx';
-import { Input } from '@repo/components/atoms/input/Input';
 
 export default function Components() {
   return (
@@ -296,7 +287,7 @@ export default function Components() {
           })}
         >
           {/* Input Dropdown */}
-          <Select>
+          {/* <Select>
             <SelectTrigger
               w="360px"
               className={css({
@@ -349,7 +340,7 @@ export default function Components() {
           </Select>
 
           {/* TextArea */}
-          <div
+          {/* <div
             className={css({
               display: 'flex',
               flexDirection: 'column',
@@ -393,7 +384,7 @@ export default function Components() {
                 borderColor: 'yellow100',
               },
             })}
-          />
+          /> */}
         </div>
       </HStack>
     </div>
