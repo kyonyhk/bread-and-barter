@@ -1,8 +1,8 @@
-import { css } from '../../../../styled-system/css';
 import { ReactNode } from 'react';
+import { css } from '../../../../styled-system/css';
 
 interface ButtonSmallProps {
-  children: string;
+  children: ReactNode;
 }
 
 export default function ButtonSmall({ children }: ButtonSmallProps) {

@@ -26,6 +26,7 @@
         "argsIgnorePattern": "^_"
       }
     ],
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "react/display-name": "off"
   }
 }

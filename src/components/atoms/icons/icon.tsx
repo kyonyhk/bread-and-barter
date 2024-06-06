@@ -1,3 +1,4 @@
+import React from 'react';
 import { css, cx } from '../../../../styled-system/css';
 
 export type IconProps = React.SVGProps<SVGSVGElement>;
