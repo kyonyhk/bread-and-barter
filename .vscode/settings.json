@@ -6,7 +6,6 @@
   "editor.autoFixOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always",
-    "source.fixAll": true,
     "source.organizeImports": "explicit"
   },
   "eslint.validate": [
