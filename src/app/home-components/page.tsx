@@ -1,11 +1,11 @@
 'use client';
 
-import VideoBlock from '@repo/components/molecules/video-block/VideoBlock';
-import { css } from '../../../styled-system/css';
-import PhotoBlock from '@repo/components/molecules/photo-block/PhotoBlock';
-import { HStack } from '../../../styled-system/jsx';
 import CourseProfileTile from '@repo/components/molecules/course-profile-tile/CourseProfileTile';
+import PhotoBlock from '@repo/components/molecules/photo-block/PhotoBlock';
+import VideoBlock from '@repo/components/molecules/video-block/VideoBlock';
 import ProfilePopup from '@repo/components/organisms/profile-popup/ProfilePopup';
+import { css } from '../../../styled-system/css';
+import { HStack } from '../../../styled-system/jsx';
 
 export default function HomeComponents() {
   return (
@@ -28,7 +28,7 @@ export default function HomeComponents() {
         <PhotoBlock courseName="Dry Laksa" teacherName="John Goh" />
         <CourseProfileTile />
       </HStack>
-      <ProfilePopup />
+      <ProfilePopup name="Jerome Seah" />
     </div>
   );
 }
