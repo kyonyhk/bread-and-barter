@@ -1,8 +1,11 @@
+import {
+  FontStyleDeclaration,
+  FontsPreloadLinks,
+} from '@repo/components/atoms/fonts/fonts';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
+import { css } from 'styled-system/css';
 
-const inter = Inter({ subsets: ['latin'] });
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Bread & Barter',
@@ -16,7 +19,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <FontsPreloadLinks />
+      </head>
+      <body className={css({ bg: 'black' })}>
+        <FontStyleDeclaration />
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,7 +1,9 @@
 import { defineConfig } from '@pandacss/dev';
+import { accordionRecipe } from '@repo/components/atoms/accordion/recipe';
+import { avatarRecipe } from '@repo/components/atoms/avatar/recipe';
 
 export default defineConfig({
-  presets: ['@shadow-panda/preset'],
+  presets: ['@pandacss/preset-base', '@park-ui/panda-preset'],
 
   // Whether to use css reset
   preflight: true,
@@ -18,6 +20,10 @@ export default defineConfig({
   // Useful for theme customization
   theme: {
     extend: {
+      slotRecipes: {
+        avatar: avatarRecipe,
+        accordion: accordionRecipe,
+      },
       tokens: {
         colors: {
           yellow100: {
@@ -84,7 +90,7 @@ export default defineConfig({
             DEFAULT: { value: 'rgba(255, 172, 154, 1.0)' },
           },
           black: {
-            DEFAULT: { value: 'rgba(34, 34, 34, 1.0)' },
+            DEFAULT: { value: 'rgba(0, 1, 10, 1.0)' },
           },
           white: {
             DEFAULT: { value: 'rgba(234, 234, 234, 1.0)' },
@@ -203,11 +209,6 @@ export default defineConfig({
 
   // The output directory for your css system
   emitPackage: true,
-  outdir: '@shadow/panda/styled-system',
-  importMap: {
-    css: '@shadow/panda/css',
-    recipes: '@shadow/panda/recipes',
-    patterns: '@shadow/panda/patterns',
-  },
+  outdir: 'styled-system',
   jsxFramework: 'react',
 });

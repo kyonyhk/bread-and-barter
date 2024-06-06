@@ -1,12 +1,7 @@
-import { css } from '../../styled-system/css';
-import ButtonSmall from '@repo/components/atoms/buttons/ButtonSmall';
-import ButtonMedium from '@repo/components/atoms/buttons/ButtonMedium';
-import ButtonLarge from '@repo/components/atoms/buttons/ButtonLarge';
-import ButtonNoBorder from '@repo/components/atoms/buttons/ButtonNoBorder';
-import { Minus, LeftArrow, RightArrow } from '@repo/components/atoms/icons';
 import Link from 'next/link';
+import { css } from '../../styled-system/css';
 
-export default function Home() {
+export default function App() {
   return (
     <div
       className={css({

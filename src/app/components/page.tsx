@@ -37,13 +37,13 @@ import { TextArea } from '@repo/components/atoms/textarea/TextArea';
 import { HStack } from '../../../styled-system/jsx';
 import { Input } from '@repo/components/atoms/input/Input';
 
-export default function Home() {
+export default function Components() {
   return (
     <div
       className={css({
         w: 'full',
         h: '100vh',
-        backgroundColor: '#111111',
+        backgroundColor: 'black',
         display: 'flex',
         flexDirection: 'column',
         gap: '40px',

@@ -13,7 +13,7 @@ export default function HomeComponents() {
       className={css({
         w: 'full',
         h: '100%',
-        backgroundColor: '#111111',
+        backgroundColor: 'black',
         display: 'flex',
         flexDirection: 'column',
         gap: '40px',
@@ -24,8 +24,8 @@ export default function HomeComponents() {
         Home Components
       </div>
       <HStack className={css({ justifyContent: 'flex-start' })}>
-        <VideoBlock />
-        <PhotoBlock />
+        <VideoBlock courseName="Dry Laksa" teacherName="John Goh" />
+        <PhotoBlock courseName="Dry Laksa" teacherName="John Goh" />
         <CourseProfileTile />
       </HStack>
       <ProfilePopup />

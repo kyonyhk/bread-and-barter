@@ -1,53 +1,115 @@
+import { Avatar } from '@repo/components/atoms/avatar';
 import { ReactNode } from 'react';
 import { css } from '../../../../styled-system/css';
 import { HStack, VStack } from '../../../../styled-system/jsx';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@repo/components/atoms/avatar';
-import Image from 'next/image';
 
 interface VideoBlockProps {
-  children: ReactNode;
+  children?: ReactNode;
+  courseName: string;
+  teacherName: string;
 }
 
-export default function VideoBlock() {
+export default function VideoBlock({
+  courseName,
+  teacherName,
+  children,
+}: VideoBlockProps) {
   return (
     <div
       className={css({
-        w: '320px',
-        h: '620px',
-        borderColor: 'yellow10',
-        borderWidth: '1px',
+        w: '100%',
+        h: '100%',
+        minH: '620px',
         borderRadius: '40px',
-        padding: '40px',
+        padding: '20px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        bg: 'transparent',
+        bgImage: 'url(/images/dry-laksa.png)',
+        bgPosition: 'center',
+        bgSize: 'cover',
+        position: 'relative',
+        overflow: 'hidden',
+        zIndex: 0,
       })}
     >
-      <Image
+      {/* <Image
         src="/images/yo-yo.png"
         width={320}
         height={620}
         alt="Yoyo"
-        className={css({ position: 'absolute', zIndex: -1 })}
-      />
+        className={css({
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 0,
+          overflow: 'hidden',
+        })}
+      /> */}
+
+      {/* Container Border */}
+      <div
+        className={css({
+          w: '100%',
+          h: '100%',
+          minH: '620px',
+          borderWidth: '1px',
+          borderColor: 'yellow20',
+          borderRadius: '40px',
+          transform: 'translate(-20px, 20px)',
+          position: 'absolute',
+          zIndex: 2,
+        })}
+      ></div>
+
+      {/* Top Shade */}
+      <div
+        className={css({
+          w: '100%',
+          h: '100%',
+          minH: '620px',
+          background:
+            'linear-gradient(180deg, rgba(0, 0, 0, 0.40) 5.48%, rgba(0, 0, 0, 0.00) 19.12%)',
+          position: 'absolute',
+          zIndex: 1,
+          transform: 'translate(-20px, 0px)',
+        })}
+      ></div>
+
+      {/* Bottom Shade */}
+      <div
+        className={css({
+          w: '100%',
+          h: '100%',
+          minH: '620px',
+          background:
+            'linear-gradient(180deg, rgba(0, 0, 0, 0.00) 58.61%, rgba(0, 0, 0, 0.60) 86.59%)',
+          position: 'absolute',
+          zIndex: 1,
+          transform: 'translate(-20px, 20px)',
+        })}
+      ></div>
+
       {/* Container for Profile Photo + Description */}
-      <VStack className={css({ gap: '8px' })}>
+      <VStack
+        className={css({
+          gap: '8px',
+          position: 'relative',
+          zIndex: 2,
+          alignItems: 'flex-start',
+        })}
+      >
         {/* Profile Avatar + Course Name + Teacher Name */}
         <HStack>
-          <Avatar>
-            <Avatar>
-              <AvatarImage src="https://github.com/nanopx.png" alt="@nanopx" />
-              <AvatarFallback>NP</AvatarFallback>
-            </Avatar>
-          </Avatar>
+          <Avatar
+            name={teacherName}
+            src="/images/profile-pic.png"
+            className={css({ textStyle: 'subheading3' })}
+          />
           <VStack
             className={css({
-              gap: '4px',
+              gap: '2px',
               alignItems: 'flex-start',
             })}
           >
@@ -57,22 +119,23 @@ export default function VideoBlock() {
                 color: 'yellow100',
               })}
             >
-              Course Name
+              {courseName}
             </div>
             <div
-              className={css({ textStyle: 'subheading5', color: 'yellow80' })}
+              className={css({
+                textStyle: 'subheading5',
+                color: 'yellow80',
+              })}
             >
-              Teacher Name
+              {teacherName}
             </div>
           </VStack>
         </HStack>
         {/* Course Description */}
-        <div className={css({ textStyle: 'paragraph1', color: 'yellow80' })}>
+        {/* <div className={css({ textStyle: 'paragraph2', color: 'yellow80' })}>
           Lorem ipsum dolor sit amet consectetur. Id massa donec sit turpis
-          hendrerit etiam. At amet feugiat elit massa eleifend. Sem lobortis
-          tempor posuere tristique pharetra magna in mi. Magna cras netus
-          facilisi mattis nibh ultricies sed sed interdum.
-        </div>
+          hendrerit etiam. At amet feugiat elit massa eleifend.
+        </div> */}
       </VStack>
     </div>
   );

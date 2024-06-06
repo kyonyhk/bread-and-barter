@@ -18,8 +18,11 @@
       }
     ],
     "paths": {
-      "@repo/*": ["./src/*"]
-    }
+      "@repo/*": ["./src/*"],
+      "~/components/ui/*": ["src/components/ui/*"],
+      "~/lib/*": ["src/lib/*"]
+    },
+    "baseUrl": "."
   },
   "include": [
     "next-env.d.ts",
