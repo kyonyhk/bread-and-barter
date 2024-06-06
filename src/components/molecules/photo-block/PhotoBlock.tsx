@@ -1,20 +1,15 @@
 import { Avatar } from '@repo/components/atoms/avatar';
-import { ReactNode } from 'react';
 import { css } from '../../../../styled-system/css';
 import { HStack, VStack } from '../../../../styled-system/jsx';
 
 interface PhotoBlockProps {
-  children?: ReactNode;
   courseName: string;
   teacherName: string;
-  courseDescription?: string;
 }
 
 export default function PhotoBlock({
   courseName,
   teacherName,
-  courseDescription,
-  children,
 }: PhotoBlockProps) {
   return (
     <div

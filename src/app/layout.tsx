@@ -3,6 +3,7 @@ import {
   FontsPreloadLinks,
 } from '@repo/components/atoms/fonts/fonts';
 import type { Metadata } from 'next';
+import React from 'react';
 import { css } from 'styled-system/css';
 
 import './globals.css';

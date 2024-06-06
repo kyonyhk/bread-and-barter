@@ -1,11 +1,16 @@
+import { Avatar } from '@repo/components/atoms/avatar';
 import ButtonLarge from '@repo/components/atoms/buttons/ButtonLarge';
-import { css } from '../../../../styled-system/css';
-import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import { RightArrow } from '@repo/components/atoms/icons';
-import { Separator } from '@repo/components/atoms/separator';
 import CourseProfileTile from '@repo/components/molecules/course-profile-tile/CourseProfileTile';
+import { css } from '../../../../styled-system/css';
 
-export default function ProfilePopup() {
+interface ProfilePopupProps {
+  name: string;
+}
+
+export default function ProfilePopup(name: ProfilePopupProps) {
+  const username = 'Jerome Seah';
+
   return (
     <div
       className={css({
@@ -26,20 +31,12 @@ export default function ProfilePopup() {
         className={css({ display: 'flex', flexDirection: 'row', gap: '8px' })}
       >
         <Avatar
-          className={css({
-            w: '80px',
-            h: '80px',
-          })}
-        >
-          <AvatarImage
-            src="https://github.com/nanopx.png"
-            alt="@nanopx"
-            className={css({ w: '80px', h: '80px' })}
-          />
-          <AvatarFallback>NP</AvatarFallback>
-        </Avatar>
+          name={username}
+          src="/images/profile-pic.png"
+          className={css({ textStyle: 'subheading3' })}
+        />
         <div className={css({ textStyle: 'subheading3', color: 'yellow100' })}>
-          Jerome Seah
+          {username}
         </div>
       </div>
 
@@ -71,7 +68,7 @@ export default function ProfilePopup() {
         </ButtonLarge>
       </div>
 
-      <Separator className={css({ bg: 'yellow20' })} />
+      <div className={css({ w: '100%', h: '1px', bg: 'yellow20' })}></div>
 
       <div
         className={css({
@@ -105,7 +102,7 @@ export default function ProfilePopup() {
           />
         </ButtonLarge>
 
-        <Separator className={css({ bg: 'yellow20' })} />
+        <div className={css({ w: '100%', h: '1px', bg: 'yellow20' })}></div>
 
         <ButtonLarge>
           Log Out
