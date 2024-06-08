@@ -104,7 +104,11 @@ const CoursePage = () => {
             })}
           >
             <div
-              className={css({ textStyle: 'subheading1', color: 'yellow100' })}
+              className={css({
+                textStyle: 'subheading1',
+                color: 'yellow100',
+                padding: '0px 40px 0px 40px',
+              })}
             >
               Pottery 101: From Clay to Creativity
             </div>
