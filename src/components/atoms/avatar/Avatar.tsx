@@ -5,7 +5,6 @@ import { css, cx } from 'styled-system/css';
 import { splitCssProps } from 'styled-system/jsx';
 import { avatar, type AvatarVariantProps } from 'styled-system/recipes';
 import type { JsxStyleProps } from 'styled-system/types';
-
 export interface AvatarProps
   extends Assign<JsxStyleProps, ArkAvatar.RootProps>,
     AvatarVariantProps {

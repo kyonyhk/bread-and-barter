@@ -1,5 +1,4 @@
 import { defineConfig } from '@pandacss/dev';
-import { accordionRecipe } from '@repo/components/atoms/accordion/recipe';
 import { avatarRecipe } from '@repo/components/atoms/avatar/recipe';
 
 export default defineConfig({
@@ -22,7 +21,6 @@ export default defineConfig({
     extend: {
       slotRecipes: {
         avatar: avatarRecipe,
-        accordion: accordionRecipe,
       },
       tokens: {
         colors: {

@@ -1,4 +1,6 @@
-// import { AccordionComponents } from '@repo/components/atoms/accordion';
+'use client';
+
+import HomeAccordion from '@repo/components/molecules/home-accordion/HomeAccordion';
 import PhotoBlock from '@repo/components/molecules/photo-block/PhotoBlock';
 import VideoBlock from '@repo/components/molecules/video-block/VideoBlock';
 import { css } from '../../../styled-system/css';
@@ -19,7 +21,7 @@ export default function Home() {
         gap: '80px',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '80px 0px 160px 0px',
+        padding: '160px 0px 160px 0px',
       })}
     >
       {/* Grid Section */}
@@ -139,23 +141,21 @@ export default function Home() {
         >
           Answering your questions.
         </div>
-
-        {/* Pausing here, coming back to work on this */}
-        {/* <Root defaultValue={['Question']}>
-          <Item>
-            <ItemTrigger>
-              'hello'
-              <ItemIndicator>
-                <DownArrow />
-              </ItemIndicator>
-            </ItemTrigger>
-            <ItemContent>
-              Pudding donut gummies chupa chups oat cake marzipan biscuit tart.
-              Dessert macaroon ice cream bonbon jelly. Jelly topping tiramisu
-              halvah lollipop.
-            </ItemContent>
-          </Item>
-        </Root> */}
+        <HomeAccordion title="Question 01">
+          Some Q&A answers here.
+        </HomeAccordion>
+        <HomeAccordion title="Question 02">
+          Some Q&A answers here.
+        </HomeAccordion>
+        <HomeAccordion title="Question 03">
+          Some Q&A answers here.
+        </HomeAccordion>
+        <HomeAccordion title="Question 04">
+          Some Q&A answers here.
+        </HomeAccordion>
+        <HomeAccordion title="Question 05">
+          Some Q&A answers here.
+        </HomeAccordion>
       </div>
     </div>
   );
