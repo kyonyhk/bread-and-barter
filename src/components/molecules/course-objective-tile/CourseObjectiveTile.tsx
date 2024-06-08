@@ -31,7 +31,7 @@ export default function CoursebjectiveTile({
       <div className={css({ textStyle: 'paragraph3', color: 'yellow50' })}>
         Objective {formattedObjectiveNumber}
       </div>
-      <div className={css({ textStyle: 'subheading5', color: 'yellow100' })}>
+      <div className={css({ textStyle: 'subheading5', color: 'yellow80' })}>
         {objectiveText}
       </div>
       <div
