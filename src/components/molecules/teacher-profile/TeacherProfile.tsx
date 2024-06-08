@@ -97,13 +97,13 @@ export default function TeacherProfile({
               })}
             >
               <Star
-                className={css({ fill: 'yellow100', w: '24px', h: '24px' })}
+                className={css({ fill: 'yellow100', w: '25px', h: '25px' })}
               />
               <Star
-                className={css({ fill: 'yellow100', w: '24px', h: '24px' })}
+                className={css({ fill: 'yellow100', w: '25px', h: '25px' })}
               />
               <Star
-                className={css({ fill: 'yellow100', w: '24px', h: '24px' })}
+                className={css({ fill: 'yellow100', w: '25px', h: '25px' })}
               />
             </div>
             <div

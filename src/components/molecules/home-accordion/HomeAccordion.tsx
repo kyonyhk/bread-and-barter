@@ -60,8 +60,8 @@ const HomeAccordion = ({
           <UpArrow
             className={css({
               fill: 'yellow50',
-              w: '24px',
-              h: '24px',
+              w: '25px',
+              h: '25px',
               cursor: 'pointer',
               _hover: {
                 scale: 1.2,
@@ -74,8 +74,8 @@ const HomeAccordion = ({
           <DownArrow
             className={css({
               fill: 'yellow100',
-              w: '24px',
-              h: '24px',
+              w: '25px',
+              h: '25px',
               cursor: 'pointer',
               _hover: {
                 scale: 1.2,
