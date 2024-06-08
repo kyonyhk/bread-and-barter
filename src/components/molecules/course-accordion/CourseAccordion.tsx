@@ -56,8 +56,8 @@ const CourseAccordion = ({
           <Edit
             className={css({
               stroke: 'yellow50',
-              height: '25px',
-              width: '25px',
+              height: '24px',
+              width: '24px',
               cursor: 'pointer',
               _hover: { stroke: 'yellow100' },
             })}
@@ -67,8 +67,8 @@ const CourseAccordion = ({
           <UpArrow
             className={css({
               fill: 'yellow50',
-              w: '25px',
-              h: '25px',
+              w: '24px',
+              h: '24px',
               cursor: 'pointer',
               _hover: {
                 scale: 1.2,
@@ -81,8 +81,8 @@ const CourseAccordion = ({
           <DownArrow
             className={css({
               fill: 'yellow100',
-              w: '25px',
-              h: '25px',
+              w: '24px',
+              h: '24px',
               cursor: 'pointer',
               _hover: {
                 scale: 1.2,

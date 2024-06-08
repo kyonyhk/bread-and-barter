@@ -31,7 +31,7 @@ const Download = ({ filename }: DownloadProps) => {
           alignItems: 'center',
         })}
       >
-        <Folder className={css({ fill: 'yellow100', w: '25px', h: '25px' })} />
+        <Folder className={css({ fill: 'yellow100', w: '24px', h: '24px' })} />
         <div className={css({ textStyle: 'subheading5', color: 'altyellow' })}>
           {filename}
         </div>
@@ -50,8 +50,8 @@ const Download = ({ filename }: DownloadProps) => {
         <FileDownload
           className={css({
             fill: 'yellow50',
-            w: '25px',
-            h: '25px',
+            w: '24px',
+            h: '24px',
           })}
         />
         <div

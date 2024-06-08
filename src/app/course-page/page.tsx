@@ -47,7 +47,7 @@ const CoursePage = () => {
             <ButtonLarge>
               Back
               <LeftArrow
-                className={css({ fill: 'yellow100', w: '25px', h: '25px' })}
+                className={css({ fill: 'yellow100', w: '24px', h: '24px' })}
               />
             </ButtonLarge>
           </Link>
@@ -75,7 +75,7 @@ const CoursePage = () => {
                 SGD 120 / Class
               </div>
               <RightArrow
-                className={css({ fill: 'yellow100', w: '25px', h: '25px' })}
+                className={css({ fill: 'yellow100', w: '24px', h: '24px' })}
               />
             </div>
           </ButtonLarge>
