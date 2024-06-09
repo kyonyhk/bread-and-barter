@@ -1,5 +1,5 @@
-import { css } from '../../../../styled-system/css';
 import { ReactNode } from 'react';
+import { css } from '../../../../styled-system/css';
 
 interface ButtonMediumProps {
   children: ReactNode;
@@ -22,7 +22,7 @@ export default function ButtonMedium({ children }: ButtonMediumProps) {
         borderColor: 'yellow20',
         borderRadius: '40px',
         backgroundColor: 'yellow5',
-        color: 'altyellow',
+        color: 'yellow100',
         _hover: {
           bg: 'yellow20',
           borderColor: 'yellow100',

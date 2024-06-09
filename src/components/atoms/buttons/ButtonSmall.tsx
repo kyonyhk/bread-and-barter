@@ -21,7 +21,7 @@ export default function ButtonSmall({ children }: ButtonSmallProps) {
         borderColor: 'yellow20',
         borderRadius: '40px',
         bg: 'yellow5',
-        color: 'altyellow',
+        color: 'yellow100',
         _hover: {
           bg: 'yellow10',
           borderColor: 'yellow100',

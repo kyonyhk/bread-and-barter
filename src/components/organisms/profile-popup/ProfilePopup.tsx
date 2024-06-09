@@ -2,9 +2,9 @@
 
 import { Avatar } from '@repo/components/atoms/avatar';
 import ButtonLarge from '@repo/components/atoms/buttons/ButtonLarge';
-import { RightArrow } from '@repo/components/atoms/icons';
+import { Cancel, RightArrow } from '@repo/components/atoms/icons';
 import CourseProfileTile from '@repo/components/molecules/course-profile-tile/CourseProfileTile';
-import { useState } from 'react';
+import { useProfilePopup } from '@repo/contexts/profile-popup-context';
 import { css } from '../../../../styled-system/css';
 
 interface ProfilePopupProps {
@@ -14,26 +14,43 @@ interface ProfilePopupProps {
 export default function ProfilePopup(name: ProfilePopupProps) {
   const username = 'Jerome Seah';
 
-  const [isOpened, setIsOpened] = useState(false);
+  const { isProfilePopupOpen, toggleProfilePopup } = useProfilePopup();
 
   return (
     <div
       className={css({
-        display: isOpened ? 'flex' : 'none',
+        display: isProfilePopupOpen ? 'flex' : 'none',
         flexDirection: 'column',
         gap: '24px',
         borderWidth: '1px',
         borderColor: 'yellow20',
         borderRadius: '30px',
         padding: '24px',
-        bg: 'yellow5',
-        backdropBlur: '4px',
+        bg: 'black50',
+        backdropFilter: 'auto',
+        backdropBlur: 'lg',
         w: '400px',
-        position: 'sticky',
+        position: 'fixed',
         top: '4px',
         right: '4px',
+        zIndex: 1000000,
       })}
     >
+      {/* Close Button */}
+      <Cancel
+        className={css({
+          fill: 'yellow100',
+          w: '24px',
+          h: '24px',
+          position: 'absolute',
+          top: '8px',
+          right: '8px',
+          zIndex: 1200001,
+          cursor: 'pointer',
+        })}
+        onClick={toggleProfilePopup}
+      />
+
       {/* Avatar + Name */}
       <div
         className={css({ display: 'flex', flexDirection: 'row', gap: '8px' })}

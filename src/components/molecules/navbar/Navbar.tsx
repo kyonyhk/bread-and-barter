@@ -2,6 +2,7 @@
 
 import { NavMenu } from '@repo/components/atoms/icons';
 import Logo from '@repo/components/atoms/logo/Logo';
+import { useProfilePopup } from '@repo/contexts/profile-popup-context';
 import Link from 'next/link';
 import { css } from 'styled-system/css';
 
@@ -19,7 +20,9 @@ import { css } from 'styled-system/css';
 //   -webkit-backdrop-filter: blur(10px); // For Safari support
 // `;
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
+  const { toggleProfilePopup } = useProfilePopup();
+
   return (
     <nav
       className={css({
@@ -28,12 +31,12 @@ const Navbar = () => {
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '24px 16px',
-        bg: 'black50',
+        bg: 'yellow5',
         position: 'sticky',
         top: 0,
         zIndex: 10000,
         backdropFilter: 'auto',
-        backdropBlur: 'sm',
+        backdropBlur: 'lg',
       })}
     >
       <Link href="/home">
@@ -49,7 +52,7 @@ const Navbar = () => {
               stroke: 'yellow100',
             },
           })}
-          onClick={() => {}}
+          onClick={toggleProfilePopup}
         />
       </div>
     </nav>

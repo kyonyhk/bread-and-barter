@@ -1,14 +1,13 @@
+// app/layout.tsx
+
 import {
   FontStyleDeclaration,
   FontsPreloadLinks,
 } from '@repo/components/atoms/fonts/fonts';
+import ClientLayout from '@repo/components/layouts/ClientLayout';
 import type { Metadata } from 'next';
 import React from 'react';
 import { css } from 'styled-system/css';
-
-import Footer from '@repo/components/molecules/footer/Footer';
-import Navbar from '@repo/components/molecules/navbar/Navbar';
-import ProfilePopup from '@repo/components/organisms/profile-popup/ProfilePopup';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -35,10 +34,7 @@ export default function RootLayout({
         })}
       >
         <FontStyleDeclaration />
-        <Navbar />
-        <ProfilePopup name="John Goh" />
-        {children}
-        <Footer />
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

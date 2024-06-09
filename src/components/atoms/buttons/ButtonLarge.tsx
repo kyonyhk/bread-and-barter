@@ -21,7 +21,7 @@ export default function ButtonLarge({ children }: ButtonLargeProps) {
         borderColor: 'yellow20',
         borderRadius: '40px',
         backgroundColor: 'yellow5',
-        color: 'altyellow',
+        color: 'yellow100',
         _hover: {
           bg: 'yellow10',
           borderColor: 'yellow100',
