@@ -90,6 +90,9 @@ export default defineConfig({
           black: {
             DEFAULT: { value: 'rgba(0, 1, 10, 1.0)' },
           },
+          black50: {
+            DEFAULT: { value: 'rgba(0, 1, 10, 0.5)' },
+          },
           white: {
             DEFAULT: { value: 'rgba(234, 234, 234, 1.0)' },
           },
@@ -107,7 +110,7 @@ export default defineConfig({
           fontFamily: 'pptelegrafblack',
           fontWeight: '900',
           fontSize: '120px',
-          lineHeight: '96px',
+          lineHeight: '108px',
         },
       },
       heading2: {

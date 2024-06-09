@@ -1,7 +1,10 @@
+'use client';
+
 import { Avatar } from '@repo/components/atoms/avatar';
 import ButtonLarge from '@repo/components/atoms/buttons/ButtonLarge';
 import { RightArrow } from '@repo/components/atoms/icons';
 import CourseProfileTile from '@repo/components/molecules/course-profile-tile/CourseProfileTile';
+import { useState } from 'react';
 import { css } from '../../../../styled-system/css';
 
 interface ProfilePopupProps {
@@ -11,10 +14,12 @@ interface ProfilePopupProps {
 export default function ProfilePopup(name: ProfilePopupProps) {
   const username = 'Jerome Seah';
 
+  const [isOpened, setIsOpened] = useState(false);
+
   return (
     <div
       className={css({
-        display: 'flex',
+        display: isOpened ? 'flex' : 'none',
         flexDirection: 'column',
         gap: '24px',
         borderWidth: '1px',
@@ -24,6 +29,9 @@ export default function ProfilePopup(name: ProfilePopupProps) {
         bg: 'yellow5',
         backdropBlur: '4px',
         w: '400px',
+        position: 'sticky',
+        top: '4px',
+        right: '4px',
       })}
     >
       {/* Avatar + Name */}
