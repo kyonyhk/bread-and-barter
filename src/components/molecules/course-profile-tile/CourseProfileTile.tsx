@@ -15,7 +15,8 @@ export default function CourseProfileTile() {
         borderWidth: '1px',
         borderRadius: '30px',
         _hover: {
-          bg: 'yellow5',
+          bg: 'yellow10',
+          borderColor: 'yellow100',
           cursor: 'pointer',
         },
       })}

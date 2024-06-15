@@ -31,29 +31,37 @@ export default function ProfilePopup(name: ProfilePopupProps) {
         backdropBlur: 'lg',
         w: '400px',
         position: 'fixed',
-        top: '4px',
-        right: '4px',
+        top: '8px',
+        right: '8px',
         zIndex: 1000000,
       })}
     >
       {/* Close Button */}
       <Cancel
         className={css({
-          fill: 'yellow100',
-          w: '24px',
-          h: '24px',
+          stroke: 'yellow50',
+          w: '40px',
+          h: '40px',
           position: 'absolute',
-          top: '8px',
-          right: '8px',
+          top: '16px',
+          right: '16px',
           zIndex: 1200001,
           cursor: 'pointer',
+          _hover: {
+            stroke: 'yellow100',
+          },
         })}
         onClick={toggleProfilePopup}
       />
 
       {/* Avatar + Name */}
       <div
-        className={css({ display: 'flex', flexDirection: 'row', gap: '8px' })}
+        className={css({
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: '16px',
+        })}
       >
         <Avatar
           name={username}

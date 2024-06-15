@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '24px 16px',
+        padding: '24px 24px',
         bg: 'yellow5',
         position: 'sticky',
         top: 0,
