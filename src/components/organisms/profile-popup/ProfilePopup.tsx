@@ -2,6 +2,7 @@
 
 import { Avatar } from '@repo/components/atoms/avatar';
 import ButtonLarge from '@repo/components/atoms/buttons/ButtonLarge';
+import Divider from '@repo/components/atoms/divider/Divider';
 import { Cancel, RightArrow } from '@repo/components/atoms/icons';
 import CourseProfileTile from '@repo/components/molecules/course-profile-tile/CourseProfileTile';
 import { useProfilePopup } from '@repo/contexts/profile-popup-context';
@@ -101,7 +102,7 @@ export default function ProfilePopup(name: ProfilePopupProps) {
         </ButtonLarge>
       </div>
 
-      <div className={css({ w: '100%', h: '1px', bg: 'yellow20' })}></div>
+      <Divider backgroundColor="yellow20" />
 
       <div
         className={css({
@@ -135,7 +136,7 @@ export default function ProfilePopup(name: ProfilePopupProps) {
           />
         </ButtonLarge>
 
-        <div className={css({ w: '100%', h: '1px', bg: 'yellow20' })}></div>
+        <Divider backgroundColor="yellow20" />
 
         <ButtonLarge>
           Log Out

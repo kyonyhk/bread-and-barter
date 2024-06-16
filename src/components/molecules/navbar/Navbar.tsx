@@ -31,14 +31,27 @@ const Navbar: React.FC = () => {
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '24px 24px',
-        bg: 'yellow5',
+        bg: 'black50',
         position: 'sticky',
         top: 0,
         zIndex: 10000,
         backdropFilter: 'auto',
-        backdropBlur: 'lg',
+        backdropBlur: 'sm',
       })}
     >
+      {/* Shade */}
+      <div
+        className={css({
+          w: '100%',
+          h: '100%',
+          background:
+            'linear-gradient(180deg, rgba(0, 0, 0, 0.80) 25%, rgba(0, 0, 0, 0.00) 75%)',
+          position: 'absolute',
+          zIndex: -1,
+          transform: 'translate(-20px, 0px)',
+        })}
+      ></div>
+
       <Link href="/home">
         <Logo />
       </Link>

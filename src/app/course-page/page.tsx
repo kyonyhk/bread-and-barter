@@ -7,14 +7,205 @@ import { LeftArrow, RightArrow } from '@repo/components/atoms/icons';
 import CourseAccordion from '@repo/components/molecules/course-accordion/CourseAccordion';
 import CourseDetails from '@repo/components/molecules/course-details/CourseDetails';
 import CourseHero from '@repo/components/molecules/course-hero/CourseHero';
-import CourseObjectiveTile from '@repo/components/molecules/course-objective-tile/CourseObjectiveTile';
+import CourseObjectives from '@repo/components/molecules/course-objectives/CourseObjectives';
+import CourseRequirements from '@repo/components/molecules/course-requirements/CourseRequirements';
 import CourseSelectionTile from '@repo/components/molecules/course-selection-tile/CourseSelectionTile';
+import CredentialsExperience from '@repo/components/molecules/credentials-experience/CredentialsExperience';
 import TeacherProfile from '@repo/components/molecules/teacher-profile/TeacherProfile';
 import Timeslot from '@repo/components/molecules/timeslot/timeslot';
 import Link from 'next/link';
+import { useState } from 'react';
 import { css } from 'styled-system/css';
 
 const CoursePage = () => {
+  const [editState, setEditState] = useState({
+    isEditingCourseSelection: false,
+    isEditingCourseDetails: false,
+    isEditingCourseTimeslots: false,
+    isEditingCourseObjectives: false,
+    isEditingCredentialsExperience: false,
+    isEditingCourseRequirements: false,
+    isEditingCourseMaterials: false,
+  });
+
+  const [saveConfirmation, setSaveConfirmation] = useState({
+    courseSelectionSaved: false,
+    courseDetailsSaved: false,
+    courseTimeslotsSaved: false,
+    courseObjectivesSaved: false,
+    credentialsExperienceSaved: false,
+    courseRequirementsSaved: false,
+    courseMaterialsSaved: false,
+  });
+
+  const [changesCancelled, setChangesCancelled] = useState({
+    courseSelectionChangesCancelled: false,
+    courseDetailsChangesCancelled: false,
+    courseTimeslotsChangesCancelled: false,
+    courseObjectivesChangesCancelled: false,
+    credentialsExperienceChangesCancelled: false,
+    courseRequirementsChangesCancelled: false,
+    courseMaterialsChangesCancelled: false,
+  });
+
+  type EditStateKey = keyof typeof editState;
+
+  const toggleEditState = (section: EditStateKey) => {
+    setEditState((prevState) => ({
+      ...prevState,
+      [section]: !prevState[section],
+    }));
+  };
+
+  const changesSavedTimeout = 2000;
+  const changesCancelledTimeout = 1000;
+
+  // Course Details
+  const [courseDetails, setCourseDetails] = useState({
+    duration: '2 hours',
+    courseDetails:
+      'This comprehensive pottery course is designed for individuals of all levels, from beginners with no prior experience to intermediate and advanced potters. Our expert instructors will guide you through the fascinating world of pottery, covering everything from basic hand-building techniques to advanced wheel-throwing and glazing methods.',
+  });
+
+  const handleSaveCourseDetails = (data: {
+    duration: string;
+    courseDetails: string;
+  }) => {
+    setCourseDetails(data);
+    toggleEditState('isEditingCourseDetails');
+    setSaveConfirmation({ ...saveConfirmation, courseDetailsSaved: true });
+    setTimeout(
+      () =>
+        setSaveConfirmation({ ...saveConfirmation, courseDetailsSaved: false }),
+      changesSavedTimeout
+    );
+  };
+
+  const handleCancelCourseDetails = () => {
+    toggleEditState('isEditingCourseDetails');
+    setChangesCancelled({
+      ...changesCancelled,
+      courseDetailsChangesCancelled: true,
+    });
+    setTimeout(
+      () =>
+        setChangesCancelled({
+          ...changesCancelled,
+          courseDetailsChangesCancelled: false,
+        }),
+      changesCancelledTimeout
+    );
+  };
+
+  // Course Objectives
+  const [courseObjectives, setCourseObjectives] = useState({
+    objective:
+      'Develop a strong foundation in pottery, including clay preparation and studio safety.',
+  });
+
+  const handleSaveCourseObjectives = (data: { objective: string }) => {
+    setCourseObjectives(data);
+    toggleEditState('isEditingCourseObjectives');
+    setSaveConfirmation({ ...saveConfirmation, courseObjectivesSaved: true });
+    setTimeout(
+      () =>
+        setSaveConfirmation({
+          ...saveConfirmation,
+          courseObjectivesSaved: false,
+        }),
+      changesSavedTimeout
+    );
+  };
+
+  const handleCancelCourseObjectives = () => {
+    toggleEditState('isEditingCourseObjectives');
+    setChangesCancelled({
+      ...changesCancelled,
+      courseObjectivesChangesCancelled: true,
+    });
+    setTimeout(
+      () =>
+        setChangesCancelled({
+          ...changesCancelled,
+          courseObjectivesChangesCancelled: false,
+        }),
+      changesCancelledTimeout
+    );
+  };
+
+  // Credentials & Experience
+  const [credentialsExperience, setCredentialsExperience] = useState(
+    'This comprehensive pottery course is designed for individuals of all levels, from beginners with no prior experience to intermediate and advanced potters. Our expert instructors will guide you through the fascinating world of pottery, covering everything from basic hand-building techniques to advanced wheel-throwing and glazing methods.'
+  );
+
+  const handleSaveCredentialsExperience = (data: { experience: string }) => {
+    setCredentialsExperience(data.experience);
+    toggleEditState('isEditingCredentialsExperience');
+    setSaveConfirmation({
+      ...saveConfirmation,
+      credentialsExperienceSaved: true,
+    });
+    setTimeout(
+      () =>
+        setSaveConfirmation({
+          ...saveConfirmation,
+          credentialsExperienceSaved: false,
+        }),
+      changesSavedTimeout
+    );
+  };
+
+  const handleCancelCredentialsExperience = () => {
+    toggleEditState('isEditingCredentialsExperience');
+    setChangesCancelled({
+      ...changesCancelled,
+      credentialsExperienceChangesCancelled: true,
+    });
+    setTimeout(
+      () =>
+        setChangesCancelled({
+          ...changesCancelled,
+          credentialsExperienceChangesCancelled: false,
+        }),
+      changesCancelledTimeout
+    );
+  };
+
+  // Course Requirements
+  const [courseRequirements, setCourseRequirements] = useState(
+    'This comprehensive pottery course is designed for individuals of all levels, from beginners with no prior experience to intermediate and advanced potters. Our expert instructors will guide you through the fascinating world of pottery, covering everything from basic hand-building techniques to advanced wheel-throwing and glazing methods.'
+  );
+
+  const handleSaveCourseRequirements = (data: { requirements: string }) => {
+    setCourseRequirements(data.requirements);
+    toggleEditState('isEditingCourseRequirements');
+    setSaveConfirmation({ ...saveConfirmation, courseRequirementsSaved: true });
+    setTimeout(
+      () =>
+        setSaveConfirmation({
+          ...saveConfirmation,
+          courseRequirementsSaved: false,
+        }),
+      changesSavedTimeout
+    );
+  };
+
+  const handleCancelCourseRequirements = () => {
+    toggleEditState('isEditingCourseRequirements');
+    setChangesCancelled({
+      ...changesCancelled,
+      courseRequirementsChangesCancelled: true,
+    });
+    setTimeout(
+      () =>
+        setChangesCancelled({
+          ...changesCancelled,
+          courseRequirementsChangesCancelled: false,
+        }),
+      changesCancelledTimeout
+    );
+  };
+
   return (
     <div
       className={css({
@@ -114,7 +305,16 @@ const CoursePage = () => {
             </div>
 
             {/* Course Selection */}
-            <CourseAccordion title="Course Selection" initialExpanded={true}>
+            <CourseAccordion
+              title="Course Selection"
+              initialExpanded={true}
+              onEdit={() => toggleEditState('isEditingCourseSelection')}
+              onSave={() => {}}
+              onCancel={() => {}}
+              isEditing={editState.isEditingCourseSelection}
+              isSaved={saveConfirmation.courseSelectionSaved}
+              isCancelled={changesCancelled.courseSelectionChangesCancelled}
+            >
               <CourseSelectionTile
                 courseNumber={1}
                 courseName="Introduction to Culinary I"
@@ -133,15 +333,38 @@ const CoursePage = () => {
             </CourseAccordion>
 
             {/* Course Details */}
-            <CourseAccordion title="Course Details" initialExpanded={true}>
+            <CourseAccordion
+              title="Course Details"
+              initialExpanded={true}
+              onEdit={() => {
+                toggleEditState('isEditingCourseDetails');
+              }}
+              onSave={handleSaveCourseDetails}
+              onCancel={handleCancelCourseDetails}
+              isEditing={editState.isEditingCourseDetails}
+              isSaved={saveConfirmation.courseDetailsSaved}
+              isCancelled={changesCancelled.courseDetailsChangesCancelled}
+            >
               <CourseDetails
-                duration="2 hours"
-                courseDetails="This comprehensive pottery course is designed for individuals of all levels, from beginners with no prior experience to intermediate and advanced potters. Our expert instructors will guide you through the fascinating world of pottery, covering everything from basic hand-building techniques to advanced wheel-throwing and glazing methods."
+                duration={courseDetails.duration}
+                courseDetails={courseDetails.courseDetails}
+                isEditing={editState.isEditingCourseDetails}
+                onSave={handleSaveCourseDetails}
+                onCancel={handleCancelCourseDetails}
               />
             </CourseAccordion>
 
             {/* Course Timeslots */}
-            <CourseAccordion title="Course Timeslots" initialExpanded={true}>
+            <CourseAccordion
+              title="Course Timeslots"
+              initialExpanded={true}
+              onEdit={() => toggleEditState('isEditingCourseTimeslots')}
+              onSave={() => {}}
+              onCancel={() => {}}
+              isEditing={editState.isEditingCourseTimeslots}
+              isSaved={saveConfirmation.courseTimeslotsSaved}
+              isCancelled={changesCancelled.courseTimeslotsChangesCancelled}
+            >
               <div
                 className={css({
                   w: '100%',
@@ -164,18 +387,21 @@ const CoursePage = () => {
             </CourseAccordion>
 
             {/* Course Objectives */}
-            <CourseAccordion title="Course Objectives" initialExpanded={false}>
-              <CourseObjectiveTile
-                objectiveNumber={1}
-                objectiveText="Develop a strong foundation in pottery, including clay preparation and studio safety."
-              />
-              <CourseObjectiveTile
-                objectiveNumber={2}
-                objectiveText="Develop a strong foundation in pottery, including clay preparation and studio safety."
-              />
-              <CourseObjectiveTile
-                objectiveNumber={3}
-                objectiveText="Develop a strong foundation in pottery, including clay preparation and studio safety."
+            <CourseAccordion
+              title="Course Objectives"
+              initialExpanded={false}
+              onEdit={() => toggleEditState('isEditingCourseObjectives')}
+              onSave={handleSaveCourseObjectives}
+              onCancel={handleCancelCourseObjectives}
+              isEditing={editState.isEditingCourseObjectives}
+              isSaved={saveConfirmation.courseObjectivesSaved}
+              isCancelled={changesCancelled.courseObjectivesChangesCancelled}
+            >
+              <CourseObjectives
+                objectives=""
+                isEditing={editState.isEditingCourseObjectives}
+                onSave={handleSaveCourseObjectives}
+                onCancel={handleCancelCourseObjectives}
               />
             </CourseAccordion>
 
@@ -183,19 +409,34 @@ const CoursePage = () => {
             <CourseAccordion
               title="Credentials & Experience"
               initialExpanded={false}
+              onEdit={() => toggleEditState('isEditingCredentialsExperience')}
+              onSave={handleSaveCredentialsExperience}
+              onCancel={handleCancelCredentialsExperience}
+              isEditing={editState.isEditingCredentialsExperience}
+              isSaved={saveConfirmation.credentialsExperienceSaved}
+              isCancelled={
+                changesCancelled.credentialsExperienceChangesCancelled
+              }
             >
-              <div className={css({ color: 'yellow50' })}>
-                This comprehensive pottery course is designed for individuals of
-                all levels, from beginners with no prior experience to
-                intermediate and advanced potters. Our expert instructors will
-                guide you through the fascinating world of pottery, covering
-                everything from basic hand-building techniques to advanced
-                wheel-throwing and glazing methods.
-              </div>
+              <CredentialsExperience
+                experience={credentialsExperience}
+                isEditing={editState.isEditingCredentialsExperience}
+                onSave={handleSaveCredentialsExperience}
+                onCancel={handleCancelCredentialsExperience}
+              />
             </CourseAccordion>
 
             {/* Course Materials */}
-            <CourseAccordion title="Course Materials" initialExpanded={false}>
+            <CourseAccordion
+              title="Course Materials"
+              initialExpanded={false}
+              onEdit={() => toggleEditState('isEditingCourseMaterials')}
+              onSave={() => {}}
+              onCancel={() => {}}
+              isEditing={editState.isEditingCourseMaterials}
+              isSaved={saveConfirmation.courseMaterialsSaved}
+              isCancelled={changesCancelled.courseMaterialsChangesCancelled}
+            >
               <div
                 className={css({
                   w: '100%',
@@ -214,15 +455,19 @@ const CoursePage = () => {
             <CourseAccordion
               title="Course Requirements"
               initialExpanded={false}
+              onEdit={() => toggleEditState('isEditingCourseRequirements')}
+              onSave={handleSaveCourseRequirements}
+              onCancel={handleCancelCourseRequirements}
+              isEditing={editState.isEditingCourseRequirements}
+              isSaved={saveConfirmation.courseRequirementsSaved}
+              isCancelled={changesCancelled.courseRequirementsChangesCancelled}
             >
-              <div className={css({ color: 'yellow50' })}>
-                This comprehensive pottery course is designed for individuals of
-                all levels, from beginners with no prior experience to
-                intermediate and advanced potters. Our expert instructors will
-                guide you through the fascinating world of pottery, covering
-                everything from basic hand-building techniques to advanced
-                wheel-throwing and glazing methods.
-              </div>
+              <CourseRequirements
+                requirements={courseRequirements}
+                isEditing={editState.isEditingCourseRequirements}
+                onSave={handleSaveCourseRequirements}
+                onCancel={handleCancelCourseRequirements}
+              />
             </CourseAccordion>
           </div>
         </div>

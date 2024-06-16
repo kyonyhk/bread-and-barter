@@ -65,7 +65,7 @@ export default function CourseSelectionTile({
         {/* Course Number */}
         <div
           className={css({
-            textStyle: 'paragraph4',
+            textStyle: 'paragraph3',
             color: isClicked ? 'black' : 'yellow50',
           })}
         >

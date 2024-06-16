@@ -5,7 +5,7 @@ interface ObjectiveTileProps {
   objectiveText: string;
 }
 
-export default function CoursebjectiveTile({
+export default function CourseObjectiveTile({
   objectiveNumber,
   objectiveText,
 }: ObjectiveTileProps) {
@@ -28,7 +28,7 @@ export default function CoursebjectiveTile({
         position: 'relative',
       })}
     >
-      <div className={css({ textStyle: 'paragraph3', color: 'yellow50' })}>
+      <div className={css({ textStyle: 'paragraph2', color: 'yellow50' })}>
         Objective {formattedObjectiveNumber}
       </div>
       <div className={css({ textStyle: 'subheading5', color: 'yellow80' })}>

@@ -1,19 +1,50 @@
 import { DownArrow, Edit, UpArrow } from '@repo/components/atoms/icons';
+import Tag from '@repo/components/atoms/tags/Tag';
 import { useState } from 'react';
 import { css } from 'styled-system/css';
 import { HStack } from 'styled-system/jsx';
 
-interface CourseAccordionProps {
-  title: string;
-  children: React.ReactNode;
-  initialExpanded?: boolean;
+interface SaveCourseData {}
+
+interface CourseDetailsSaveData extends SaveCourseData {
+  duration: string;
+  courseDetails: string;
 }
 
-const CourseAccordion = ({
+interface CourseObjectivesSaveData extends SaveCourseData {
+  objectives: string;
+}
+interface CredentialsExperienceSaveData extends SaveCourseData {
+  experience: string;
+}
+
+interface CourseRequirementsSaveData extends SaveCourseData {
+  requirements: string;
+}
+
+interface CourseAccordionProps<T extends SaveCourseData> {
+  title: string;
+  children: React.ReactNode;
+  initialExpanded: boolean;
+  onEdit: () => void;
+  onSave: (data: T) => void;
+  onCancel: () => void;
+  isEditing: boolean;
+  isSaved: boolean;
+  isCancelled: boolean;
+}
+
+const CourseAccordion = <T extends SaveCourseData>({
   title,
   initialExpanded,
   children,
-}: CourseAccordionProps) => {
+  onEdit,
+  onSave,
+  onCancel,
+  isEditing,
+  isSaved,
+  isCancelled,
+}: CourseAccordionProps<T>) => {
   const [isExpanded, setIsExpanded] = useState(initialExpanded);
 
   const toggleAccordion = () => {
@@ -53,17 +84,36 @@ const CourseAccordion = ({
           })}
         >
           {title}
-          <Edit
-            className={css({
-              stroke: 'yellow50',
-              height: '23px',
-              width: '23px',
-              cursor: 'pointer',
-              _hover: { stroke: 'yellow100' },
-            })}
-          />
+          {!isEditing && isExpanded && (
+            <Edit
+              className={css({
+                stroke: 'yellow50',
+                height: '23px',
+                width: '23px',
+                cursor: 'pointer',
+                _hover: { stroke: 'yellow100' },
+              })}
+              onClick={onEdit}
+            />
+          )}
+          {isSaved && (
+            <Tag
+              color="altgreen"
+              backgroundColor="green50"
+              borderColor="green50"
+            >
+              Changes Saved
+            </Tag>
+          )}
+          {isCancelled && (
+            <Tag color="altred" backgroundColor="red50" borderColor="red50">
+              Changes Discarded
+            </Tag>
+          )}
         </div>
-        {isExpanded ? (
+        {isEditing ? (
+          <Tag>Editing</Tag>
+        ) : isExpanded ? (
           <UpArrow
             className={css({
               fill: 'yellow50',
@@ -92,10 +142,6 @@ const CourseAccordion = ({
             onClick={toggleAccordion}
           />
         )}
-        {/* <IconWrapper
-          name={isExpanded ? 'UpArrow' : 'DownArrow'}
-          cssIcon={{ fill: 'yellow100', width: '24px', height: '24px' }}
-        /> */}
       </HStack>
       {isExpanded && (
         <div

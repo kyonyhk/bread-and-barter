@@ -1,13 +1,36 @@
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 import { css } from '../../../../styled-system/css';
 
 interface ButtonMediumProps {
   children: ReactNode;
+  onClick?: MouseEventHandler<HTMLDivElement>;
+  color?: string;
+  backgroundColor?: string;
+  borderColor?: string;
+  hoverColor?: string;
+  hoverBackgroundColor?: string;
+  hoverBorderColor?: string;
+  activeColor?: string;
+  activeBackgroundColor?: string;
+  activeBorderColor?: string;
 }
 
-export default function ButtonMedium({ children }: ButtonMediumProps) {
+export default function ButtonMedium({
+  children,
+  onClick,
+  color = 'yellow100',
+  backgroundColor = 'yellow5',
+  borderColor = 'yellow20',
+  hoverColor = 'yellow100',
+  hoverBackgroundColor = 'yellow20',
+  hoverBorderColor = 'yellow100',
+  activeColor = 'altyellow',
+  activeBackgroundColor = 'yellow80',
+  activeBorderColor = 'yellow100',
+}: ButtonMediumProps) {
   return (
     <div
+      onClick={onClick}
       className={css({
         display: 'flex',
         flexDirection: 'row',
@@ -19,20 +42,20 @@ export default function ButtonMedium({ children }: ButtonMediumProps) {
         textStyle: 'paragraph1',
         padding: '12px 24px',
         borderWidth: '1px',
-        borderColor: 'yellow20',
+        borderColor: borderColor,
         borderRadius: '40px',
-        backgroundColor: 'yellow5',
-        color: 'yellow100',
+        backgroundColor: backgroundColor,
+        color: color,
         _hover: {
-          bg: 'yellow20',
-          borderColor: 'yellow100',
-          color: 'yellow100',
+          backgroundColor: hoverBackgroundColor,
+          borderColor: hoverBorderColor,
+          color: hoverColor,
           cursor: 'pointer',
         },
         _active: {
-          bg: 'yellow80',
-          borderColor: 'yellow100',
-          color: 'altyellow',
+          backgroundColor: activeBackgroundColor,
+          borderColor: activeBorderColor,
+          color: activeColor,
           cursor: 'auto',
         },
       })}

@@ -1,23 +1,33 @@
 import { css } from '../../../../styled-system/css';
-import React from 'react';
 
 interface TagProps {
   children: string;
+  color?: string;
+  backgroundColor?: string;
+  borderColor?: string;
+  className?: string;
 }
 
-export default function Tag({ children }: TagProps) {
+export default function Tag({
+  children,
+  color = 'altyellow',
+  backgroundColor = 'yellow50',
+  borderColor = 'yellow50',
+  className,
+}: TagProps) {
   return (
     <div
-      className={css({
+      className={`${css({
         display: 'flex',
         justifyContent: 'center',
-        padding: '8px 16px',
-        color: 'altyellow',
-        bg: 'yellow50',
-        borderColor: 'yellow50',
+        padding: '4px 16px',
+        color: color,
+        bg: backgroundColor,
+        borderColor: borderColor,
         borderRadius: '100px',
-        maxWidth: '100px',
-      })}
+        maxWidth: '160px',
+        textStyle: 'paragraph2',
+      })} ${className}`}
     >
       {children}
     </div>

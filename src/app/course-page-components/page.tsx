@@ -4,7 +4,7 @@ import Download from '@repo/components/atoms/download/Download';
 import CourseAccordion from '@repo/components/molecules/course-accordion/CourseAccordion';
 import CourseDetails from '@repo/components/molecules/course-details/CourseDetails';
 import CourseHero from '@repo/components/molecules/course-hero/CourseHero';
-import CourseObjectiveTile from '@repo/components/molecules/course-objective-tile/CourseObjectiveTile';
+import CourseObjectiveTile from '@repo/components/molecules/course-objectives/CourseObjectiveTile';
 import CourseSelectionTile from '@repo/components/molecules/course-selection-tile/CourseSelectionTile';
 import TeacherProfile from '@repo/components/molecules/teacher-profile/TeacherProfile';
 import { css } from 'styled-system/css';
@@ -74,7 +74,12 @@ export default function CourseComponents() {
       </div>
 
       {/* Course Selection */}
-      <CourseAccordion title="Course Selection">
+      <CourseAccordion
+        initialExpanded={false}
+        onEdit={() => {}}
+        isEditing={false}
+        title="Course Selection"
+      >
         <CourseSelectionTile
           courseNumber={1}
           courseName="Introduction to Culinary I"
@@ -93,7 +98,12 @@ export default function CourseComponents() {
       </CourseAccordion>
 
       {/* Course Selection */}
-      <CourseAccordion title="Course Selection">
+      <CourseAccordion
+        initialExpanded={false}
+        onEdit={() => {}}
+        isEditing={false}
+        title="Course Selection"
+      >
         <CourseSelectionTile
           courseNumber={1}
           courseName="Introduction to Culinary I"
@@ -112,14 +122,27 @@ export default function CourseComponents() {
       </CourseAccordion>
 
       {/* Course Details */}
-      <CourseAccordion title="Course Details">
+      <CourseAccordion
+        initialExpanded={false}
+        onEdit={() => {}}
+        isEditing={false}
+        title="Course Details"
+      >
         <CourseDetails
           duration="2 hours"
           courseDetails="This comprehensive pottery course is designed for individuals of all levels, from beginners with no prior experience to intermediate and advanced potters. Our expert instructors will guide you through the fascinating world of pottery, covering everything from basic hand-building techniques to advanced wheel-throwing and glazing methods."
+          isEditing={false}
+          onSave={() => {}}
+          onCancel={() => {}}
         />
       </CourseAccordion>
 
-      <CourseAccordion title="Course Objectives">
+      <CourseAccordion
+        initialExpanded={false}
+        onEdit={() => {}}
+        isEditing={false}
+        title="Course Objectives"
+      >
         <CourseObjectiveTile
           objectiveNumber={1}
           objectiveText="Develop a strong foundation in pottery, including clay preparation and studio safety."
@@ -135,7 +158,12 @@ export default function CourseComponents() {
       </CourseAccordion>
 
       {/* Course Requirements */}
-      <CourseAccordion title="Course Requirements">
+      <CourseAccordion
+        initialExpanded={false}
+        onEdit={() => {}}
+        isEditing={false}
+        title="Course Requirements"
+      >
         <div className={css({ color: 'yellow50' })}>
           This comprehensive pottery course is designed for individuals of all
           levels, from beginners with no prior experience to intermediate and
@@ -147,7 +175,12 @@ export default function CourseComponents() {
       </CourseAccordion>
 
       {/* Credentials & Experience */}
-      <CourseAccordion title="Credentials & Experience">
+      <CourseAccordion
+        initialExpanded={false}
+        onEdit={() => {}}
+        isEditing={false}
+        title="Credentials & Experience"
+      >
         <div className={css({ color: 'yellow50' })}>
           This comprehensive pottery course is designed for individuals of all
           levels, from beginners with no prior experience to intermediate and
@@ -159,7 +192,12 @@ export default function CourseComponents() {
       </CourseAccordion>
 
       {/* Course Materials */}
-      <CourseAccordion title="Course Materials">
+      <CourseAccordion
+        initialExpanded={false}
+        onEdit={() => {}}
+        isEditing={false}
+        title="Course Materials"
+      >
         <div
           className={css({
             w: '100%',
