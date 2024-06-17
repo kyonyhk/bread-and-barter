@@ -1,4 +1,10 @@
-import { DownArrow, Edit, UpArrow } from '@repo/components/atoms/icons';
+import {
+  Cancel,
+  Check,
+  DownArrow,
+  Edit,
+  UpArrow,
+} from '@repo/components/atoms/icons';
 import Tag from '@repo/components/atoms/tags/Tag';
 import { useState } from 'react';
 import { css } from 'styled-system/css';
@@ -102,11 +108,25 @@ const CourseAccordion = <T extends SaveCourseData>({
               backgroundColor="green50"
               borderColor="green50"
             >
+              <Check
+                className={css({
+                  stroke: 'green100',
+                  w: '16px',
+                  h: '16px',
+                })}
+              />
               Changes Saved
             </Tag>
           )}
           {isCancelled && (
             <Tag color="altred" backgroundColor="red50" borderColor="red50">
+              <Cancel
+                className={css({
+                  stroke: 'red100',
+                  w: '16px',
+                  h: '16px',
+                })}
+              />
               Changes Discarded
             </Tag>
           )}

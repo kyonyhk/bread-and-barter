@@ -1,7 +1,7 @@
 import { css } from '../../../../styled-system/css';
 
 interface TagProps {
-  children: string;
+  children: React.ReactNode;
   color?: string;
   backgroundColor?: string;
   borderColor?: string;
