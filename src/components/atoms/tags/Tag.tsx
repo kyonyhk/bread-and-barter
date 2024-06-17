@@ -20,12 +20,13 @@ export default function Tag({
       className={`${css({
         display: 'flex',
         justifyContent: 'center',
+        alignItems: 'center',
+        gap: '4px',
         padding: '4px 16px',
         color: color,
         bg: backgroundColor,
         borderColor: borderColor,
         borderRadius: '100px',
-        maxWidth: '160px',
         textStyle: 'paragraph2',
       })} ${className}`}
     >

@@ -105,9 +105,10 @@ const CourseAccordion = <T extends SaveCourseData>({
           {isSaved && (
             <Tag
               color="altgreen"
-              backgroundColor="green50"
+              backgroundColor="green10"
               borderColor="green50"
             >
+              Changes Saved
               <Check
                 className={css({
                   stroke: 'green100',
@@ -115,11 +116,11 @@ const CourseAccordion = <T extends SaveCourseData>({
                   h: '16px',
                 })}
               />
-              Changes Saved
             </Tag>
           )}
           {isCancelled && (
-            <Tag color="altred" backgroundColor="red50" borderColor="red50">
+            <Tag color="altred" backgroundColor="red10" borderColor="red50">
+              Changes Discarded
               <Cancel
                 className={css({
                   stroke: 'red100',
@@ -127,7 +128,6 @@ const CourseAccordion = <T extends SaveCourseData>({
                   h: '16px',
                 })}
               />
-              Changes Discarded
             </Tag>
           )}
         </div>
