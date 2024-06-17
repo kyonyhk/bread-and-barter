@@ -26,12 +26,12 @@ interface CourseAccordionProps<T extends SaveCourseData> {
   title: string;
   children: React.ReactNode;
   initialExpanded: boolean;
-  onEdit: () => void;
-  onSave: (data: T) => void;
-  onCancel: () => void;
-  isEditing: boolean;
-  isSaved: boolean;
-  isCancelled: boolean;
+  onEdit?: () => void;
+  onSave?: (data: T) => void;
+  onCancel?: () => void;
+  isEditing?: boolean;
+  isSaved?: boolean;
+  isCancelled?: boolean;
 }
 
 const CourseAccordion = <T extends SaveCourseData>({
