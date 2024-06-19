@@ -12,6 +12,8 @@ interface EditObjectiveProps {
   isEditing: boolean;
   onSave: (data: { objective: string }) => void;
   onCancel: () => void;
+  onAddObjective: () => void;
+  canAddMore: boolean;
 }
 
 const EditObjectives = ({
@@ -20,56 +22,67 @@ const EditObjectives = ({
   isEditing,
   onSave,
   onCancel,
+  onAddObjective,
+  canAddMore,
 }: EditObjectiveProps) => {
   const [currentObjective, setCurrentObjective] = useState(objective);
 
-  return (
+  return isEditing ? (
     <div
-      className={css({ display: 'flex', flexDirection: 'column', gap: '24px' })}
+      className={css({
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '24px',
+        w: '100%',
+      })}
     >
-      <div
-        className={css({
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'flex-end',
-        })}
-      >
-        <ButtonNoBorder>
-          <Plus
-            className={css({
-              stroke: 'yellow100',
-              fill: 'yellow100',
-              w: '24px',
-              h: '24px',
-            })}
-          />
-          Add Objective
-        </ButtonNoBorder>
-      </div>
-      <div
-        className={css({
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '8px',
-        })}
-      >
-        <div className={css({ textStyle: 'subheading5', color: 'yellow80' })}>
-          {objectiveNo}
+      <>
+        <div
+          className={css({
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'flex-end',
+          })}
+        >
+          {canAddMore && (
+            <ButtonNoBorder onClick={onAddObjective}>
+              <Plus
+                className={css({
+                  stroke: 'yellow100',
+                  fill: 'yellow100',
+                  w: '24px',
+                  h: '24px',
+                })}
+              />
+              Add Objective
+            </ButtonNoBorder>
+          )}
         </div>
-        <TextArea
-          value={currentObjective}
-          placeholder="What would you like your students to learn?"
-          onChange={(e) => setCurrentObjective(e.target.value)}
-          className={css({ textStyle: 'paragraph1', color: 'altyellow' })}
-        />
-        <EditActions
-          onSave={() => onSave({ objective: currentObjective })}
-          onCancel={onCancel}
-        />
-      </div>
-      <Divider />
+        <div
+          className={css({
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '8px',
+          })}
+        >
+          <div className={css({ textStyle: 'subheading5', color: 'yellow80' })}>
+            {objectiveNo}
+          </div>
+          <TextArea
+            value={currentObjective}
+            placeholder="What would you like your students to learn?"
+            onChange={(e) => setCurrentObjective(e.target.value)}
+            className={css({ textStyle: 'paragraph1', color: 'altyellow' })}
+          />
+          <EditActions
+            onSave={() => onSave({ objective: currentObjective })}
+            onCancel={onCancel}
+          />
+        </div>
+        <Divider />
+      </>
     </div>
-  );
+  ) : null;
 };
 
 export default EditObjectives;

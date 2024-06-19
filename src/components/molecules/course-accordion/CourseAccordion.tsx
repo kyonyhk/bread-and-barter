@@ -18,7 +18,7 @@ interface CourseDetailsSaveData extends SaveCourseData {
 }
 
 interface CourseObjectivesSaveData extends SaveCourseData {
-  objectives: string;
+  objectives: string[];
 }
 interface CredentialsExperienceSaveData extends SaveCourseData {
   experience: string;

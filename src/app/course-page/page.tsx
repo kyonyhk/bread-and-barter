@@ -98,12 +98,11 @@ const CoursePage = () => {
   };
 
   // Course Objectives
-  const [courseObjectives, setCourseObjectives] = useState({
-    objective:
-      'Develop a strong foundation in pottery, including clay preparation and studio safety.',
-  });
+  const [courseObjectives, setCourseObjectives] = useState<string[]>([
+    'Develop a strong foundation in pottery, including clay preparation and studio safety.',
+  ]);
 
-  const handleSaveCourseObjectives = (data: { objective: string }) => {
+  const handleSaveCourseObjectives = (data: string[]) => {
     setCourseObjectives(data);
     toggleEditState('isEditingCourseObjectives');
     setSaveConfirmation({ ...saveConfirmation, courseObjectivesSaved: true });
@@ -398,7 +397,7 @@ const CoursePage = () => {
               isCancelled={changesCancelled.courseObjectivesChangesCancelled}
             >
               <CourseObjectives
-                objectives=""
+                initialObjectives={courseObjectives}
                 isEditing={editState.isEditingCourseObjectives}
                 onSave={handleSaveCourseObjectives}
                 onCancel={handleCancelCourseObjectives}

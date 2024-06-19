@@ -4,41 +4,81 @@ import CourseObjectiveTile from './CourseObjectiveTile';
 import EditObjectives from './EditObjectives';
 
 interface CourseObjectivesProps {
-  objectives: string;
+  initialObjectives: string[];
   isEditing: boolean;
-  onSave: (data: { objective: string }) => void;
+  onSave: (data: string[]) => void;
   onCancel: () => void;
 }
 
 const CourseObjectives = ({
-  objectives,
+  initialObjectives,
   isEditing,
   onSave,
   onCancel,
 }: CourseObjectivesProps) => {
-  const [currentObjective, setCurrentObjective] = useState('');
+  const [objectives, setObjectives] = useState<string[]>(initialObjectives);
+  const [currentObjective, setCurrentObjective] = useState<string>('');
   const [isEditingCourseObjectives, setIsEditingCourseObjectives] =
     useState(isEditing);
+
+  // git
 
   const toggleCourseObjectivesEdit = () => {
     setIsEditingCourseObjectives(!isEditingCourseObjectives);
   };
 
+  const handleAddObjective = () => {
+    if (objectives.length < 3) {
+      setObjectives([...objectives, '']);
+      setIsEditingCourseObjectives(true);
+    }
+  };
+
+  const handleSaveObjective = (index: number, objective: string) => {
+    const updatedObjectives = [...objectives];
+    updatedObjectives[index] = objective;
+    setObjectives(updatedObjectives);
+    setIsEditingCourseObjectives(false);
+    onSave(updatedObjectives);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditingCourseObjectives(false);
+    onCancel();
+  };
+
   return (
     <div
-      className={css({ display: 'flex', flexDirection: 'column', gap: '24px' })}
+      className={css({
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '24px',
+        w: '100%',
+      })}
     >
-      <EditObjectives
-        objectiveNo="Objective 01"
-        objective={currentObjective}
-        isEditing={isEditingCourseObjectives}
-        onSave={() => onSave({ objective: currentObjective })}
-        onCancel={onCancel}
-      />
+      {objectives.map((objective, index) => (
+        <EditObjectives
+          key={index}
+          objectiveNo={`Objective ${String(index + 1).padStart(2, '0')}`}
+          objective={objective}
+          isEditing={isEditing}
+          onSave={(data) => handleSaveObjective(index, data.objective)}
+          onCancel={handleCancelEdit}
+          onAddObjective={handleAddObjective}
+          canAddMore={objectives.length < 3}
+        />
+      ))}
       <div
         className={css({ display: 'flex', flexDirection: 'row', gap: '8px' })}
       >
-        <CourseObjectiveTile
+        {objectives.map((objective, index) => (
+          <CourseObjectiveTile
+            key={index}
+            objectiveNumber={index + 1}
+            objectiveText={objective}
+          />
+        ))}
+        {/* <CourseObjectiveTile
           objectiveNumber={1}
           objectiveText="Develop a strong foundation in pottery, including clay preparation and studio safety."
         />
@@ -49,7 +89,7 @@ const CourseObjectives = ({
         <CourseObjectiveTile
           objectiveNumber={3}
           objectiveText="Develop a strong foundation in pottery, including clay preparation and studio safety."
-        />
+        /> */}
       </div>
     </div>
   );

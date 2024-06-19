@@ -1,8 +1,9 @@
+import { MouseEventHandler, ReactNode } from 'react';
 import { css } from '../../../../styled-system/css';
-import { ReactNode } from 'react';
 
 interface ButtonNoBorderProps {
   children: ReactNode;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 export default function ButtonNoBorder({ children }: ButtonNoBorderProps) {
