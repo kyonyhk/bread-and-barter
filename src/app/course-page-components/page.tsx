@@ -1,8 +1,8 @@
 'use client';
 
 import Download from '@repo/components/atoms/download/Download';
-import CourseAccordion from '@repo/components/molecules/class-accordion/ClassAccordion';
-import CourseDetails from '@repo/components/molecules/class-details/CourseDetails';
+import CourseAccordion from '@repo/components/molecules/course-accordion/CourseAccordion';
+import CourseDetails from '@repo/components/molecules/course-details/CourseDetails';
 import CourseHero from '@repo/components/molecules/course-hero/CourseHero';
 import CourseObjectiveTile from '@repo/components/molecules/course-objectives/CourseObjectiveTile';
 import CourseSelectionTile from '@repo/components/molecules/course-selection-tile/CourseSelectionTile';
