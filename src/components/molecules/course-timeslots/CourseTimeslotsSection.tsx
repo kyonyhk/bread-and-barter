@@ -1,4 +1,5 @@
 import { useAuth } from '@repo/app/auth/AuthContext';
+import TileButton from '@repo/components/atoms/buttons/TileButton';
 import { Course } from '@repo/types/course';
 import { CourseSectionProps, DaySchedule } from '@repo/types/courseSection';
 import { useEffect, useState } from 'react';
@@ -121,6 +122,71 @@ export default function CourseTimeslotsSection({
     onCancel();
   };
 
+  const renderContent = () => {
+    if (currentTimeslots.length === 0) {
+      if (!isEditing && isAuthorized) {
+        return (
+          <TileButton
+            title="Add Course Timeslots"
+            subtitle="Set available days and times for your course"
+            onClick={onEdit}
+            className={css({
+              borderRadius: '16px',
+            })}
+          />
+        );
+      }
+
+      if (!isAuthorized) {
+        return (
+          <div
+            className={css({
+              w: '100%',
+              h: '128px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '4px',
+              borderWidth: '1px',
+              borderStyle: 'dashed',
+              borderColor: 'yellow20',
+              borderRadius: '16px',
+              bg: 'transparent',
+              padding: '24px',
+            })}
+          >
+            <div
+              className={css({ textStyle: 'subheading5', color: 'yellow80' })}
+            >
+              No Timeslots Available
+            </div>
+            <div
+              className={css({
+                textStyle: 'paragraph2',
+                color: 'yellow50',
+                textAlign: 'center',
+              })}
+            >
+              The teacher hasn't added any available timeslots for this course
+              yet
+            </div>
+          </div>
+        );
+      }
+    }
+
+    return (
+      <CourseTimeslot
+        initialTimeslots={currentTimeslots}
+        onTimeslotsChange={handleTimeslotsChange}
+        isEditing={isEditing}
+        onEdit={isAuthorized ? onEdit : undefined}
+        courseDuration={course.duration}
+      />
+    );
+  };
+
   return (
     <CourseAccordion
       title="Course Timeslots"
@@ -141,13 +207,7 @@ export default function CourseTimeslotsSection({
           gap: '24px',
         })}
       >
-        <CourseTimeslot
-          initialTimeslots={currentTimeslots}
-          onTimeslotsChange={handleTimeslotsChange}
-          isEditing={isEditing}
-          onEdit={isAuthorized ? onEdit : undefined}
-          courseDuration={course.duration}
-        />
+        {renderContent()}
       </div>
     </CourseAccordion>
   );

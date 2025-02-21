@@ -28,7 +28,7 @@ export default function CourseObjectivesSection({
 
   // Check if user is authorized (teacher or admin)
   const isAuthorized =
-    user && (user.id === teacherId || user.user_metadata?.is_admin === true);
+    !!user && (user.id === teacherId || user.user_metadata?.is_admin === true);
 
   // Reset objectives when course changes or editing mode is cancelled
   useEffect(() => {
@@ -131,6 +131,7 @@ export default function CourseObjectivesSection({
         isEditing={isEditing}
         onObjectivesChange={handleObjectivesChange}
         onEdit={isAuthorized ? onEdit : undefined}
+        isAuthorized={isAuthorized}
       />
     </CourseAccordion>
   );

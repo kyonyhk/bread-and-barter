@@ -1,6 +1,5 @@
 'use client';
 
-import TileButton from '@repo/components/atoms/buttons/TileButton';
 import { Divider } from '@repo/components/atoms/divider';
 import { DaySchedule, TimeSlot } from '@repo/types/courseSection';
 import { useEffect, useState } from 'react';
@@ -133,38 +132,31 @@ export default function CourseTimeslot({
     <div
       className={css({ display: 'flex', flexDirection: 'column', gap: '24px' })}
     >
-      {showTileButton ? (
-        <TileButton
-          title="Add Course Timeslots"
-          subtitle="Set available days and times for your course"
-          onClick={onEdit}
-          className={css({
-            borderRadius: '16px',
-          })}
-        />
-      ) : (
+      {isEditing ? (
         <>
-          {showEditComponents && (
-            <>
-              <Calendar
-                selectedDate={selectedDate}
-                onDateSelect={handleDateSelect}
-              />
-              <SelectSchedule
-                selectedDate={selectedDate}
-                onAddSchedule={handleAddSchedule}
-                courseDuration={courseDuration}
-              />
-              <Divider />
-            </>
-          )}
+          <Calendar
+            selectedDate={selectedDate}
+            onDateSelect={handleDateSelect}
+          />
+          <SelectSchedule
+            selectedDate={selectedDate}
+            onAddSchedule={handleAddSchedule}
+            courseDuration={courseDuration}
+          />
+          <Divider />
           <CurrentSchedule
             schedules={schedules}
-            onDeleteSlot={showEditComponents ? handleDeleteSlot : undefined}
-            isEditing={showEditComponents}
+            onDeleteSlot={handleDeleteSlot}
+            isEditing={true}
           />
         </>
-      )}
+      ) : schedules.length > 0 ? (
+        <CurrentSchedule
+          schedules={schedules}
+          onDeleteSlot={undefined}
+          isEditing={false}
+        />
+      ) : null}
     </div>
   );
 }

@@ -4,16 +4,23 @@ import { css } from '../../../../styled-system/css';
 import { HStack, VStack } from '../../../../styled-system/jsx';
 
 interface PhotoBlockProps {
-  courseName: string;
-  teacherName: string;
+  title: string;
+  subtitle: string;
+  programId: string;
+  imageUrl: string;
 }
 
 export default function PhotoBlock({
-  courseName,
-  teacherName,
+  title,
+  subtitle,
+  programId,
+  imageUrl,
 }: PhotoBlockProps) {
   return (
-    <Link href="/course-page" className={css({ w: '100%', h: '100%' })}>
+    <Link
+      href={`/programs/${programId}`}
+      className={css({ w: '100%', h: '100%' })}
+    >
       <div
         className={css({
           w: '100%',
@@ -23,7 +30,7 @@ export default function PhotoBlock({
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
-          bgImage: 'url(/images/dry-laksa.png)',
+          bgImage: `url(${imageUrl})`,
           bgPosition: 'center',
           bgSize: 'cover',
           position: 'relative',
@@ -44,8 +51,6 @@ export default function PhotoBlock({
             position: 'absolute',
             zIndex: 2,
             _hover: {
-              // borderColor: 'yellow50',
-              // borderWidth: '2px',
               bg: 'yellow5',
             },
           })}
@@ -61,6 +66,7 @@ export default function PhotoBlock({
             position: 'absolute',
             zIndex: 1,
             transform: 'translate(-20px, 20px)',
+            borderRadius: '40px',
           })}
         ></div>
 
@@ -74,10 +80,11 @@ export default function PhotoBlock({
             position: 'absolute',
             zIndex: 1,
             transform: 'translate(-20px, 20px)',
+            borderRadius: '40px',
           })}
         ></div>
 
-        {/* Container for Profile Photo + Description */}
+        {/* Container for Program Info */}
         <VStack
           className={css({
             gap: '4px',
@@ -86,15 +93,17 @@ export default function PhotoBlock({
             alignItems: 'flex-start',
           })}
         >
-          {/* Profile Avatar + Course Name + Teacher Name */}
+          {/* Program Title + Teacher Info */}
           <HStack>
             <Avatar
-              name={teacherName}
+              name={subtitle}
               src="/images/profile-pic.png"
               className={css({ textStyle: 'subheading3' })}
             />
-            <VStack
+            <div
               className={css({
+                display: 'flex',
+                flexDirection: 'column',
                 gap: '2px',
                 alignItems: 'flex-start',
               })}
@@ -105,20 +114,18 @@ export default function PhotoBlock({
                   color: 'yellow100',
                 })}
               >
-                {courseName}
+                {title}
               </div>
               <div
-                className={css({ textStyle: 'subheading5', color: 'yellow80' })}
+                className={css({
+                  textStyle: 'subheading5',
+                  color: 'yellow80',
+                })}
               >
-                {teacherName}
+                {subtitle}
               </div>
-            </VStack>
+            </div>
           </HStack>
-          {/* Course Description */}
-          {/* <div className={css({ textStyle: 'paragraph2', color: 'yellow80' })}>
-          Lorem ipsum dolor sit amet consectetur. Id massa donec sit turpis
-          hendrerit etiam. At amet feugiat elit massa eleifend.
-        </div> */}
         </VStack>
       </div>
     </Link>

@@ -4,9 +4,12 @@ import ButtonLarge from '@repo/components/atoms/buttons/ButtonLarge';
 import ButtonMedium from '@repo/components/atoms/buttons/ButtonMedium';
 import ButtonNoBorder from '@repo/components/atoms/buttons/ButtonNoBorder';
 import ButtonSmall from '@repo/components/atoms/buttons/ButtonSmall';
+import CalendarCell from '@repo/components/atoms/calendar/CalendarCell';
 import {
   Cancel,
   Check,
+  CheckboxCircle,
+  Circle,
   Delete,
   DownArrow,
   Edit,
@@ -25,6 +28,7 @@ import {
   Upload,
 } from '@repo/components/atoms/icons';
 import Tag from '@repo/components/atoms/tags/Tag';
+import Checklist from '@repo/components/molecules/checklist/Checklist';
 import { css } from '../../../styled-system/css';
 import { HStack } from '../../../styled-system/jsx';
 
@@ -212,6 +216,20 @@ export default function Components() {
               w: '24px',
             })}
           />
+          <CheckboxCircle
+            className={css({
+              fill: 'yellow100',
+              h: '24px',
+              w: '24px',
+            })}
+          />
+          <Circle
+            className={css({
+              fill: 'yellow100',
+              h: '24px',
+              w: '24px',
+            })}
+          />
         </div>
       </div>
 
@@ -278,6 +296,11 @@ export default function Components() {
           <ButtonLarge>Large</ButtonLarge>
         </div>
 
+        <CalendarCell date={1} state="selected" />
+        <CalendarCell date={1} state="past" />
+        <CalendarCell date={1} state="available" />
+        <CalendarCell date={null} state="empty" />
+
         {/* Components Column 2 */}
         <div
           className={css({
@@ -286,6 +309,11 @@ export default function Components() {
             gap: '40px',
           })}
         >
+          <Checklist
+            isExpanded={true}
+            onToggle={() => {}}
+            className={css({})}
+          />
           {/* Input Dropdown */}
           {/* <Select>
             <SelectTrigger

@@ -25,6 +25,7 @@ interface CourseMaterialsProps {
     materials: (CourseMaterial | PendingMaterial)[] | null
   ) => void;
   onEdit?: () => void;
+  isAuthorized?: boolean;
 }
 
 const CourseMaterials = ({
@@ -32,6 +33,7 @@ const CourseMaterials = ({
   isEditing,
   onStateChange,
   onEdit,
+  isAuthorized = false,
 }: CourseMaterialsProps) => {
   console.log('[CourseMaterials] Received materials:', materials);
 
@@ -258,8 +260,54 @@ const CourseMaterials = ({
     }
   };
 
-  // Show TileButton in empty state when not editing
-  if (!currentMaterials.length && !pendingMaterials.length && !isEditing) {
+  // Show "no data" container for unauthorized users when there are no materials
+  if (
+    !currentMaterials.length &&
+    !pendingMaterials.length &&
+    !isEditing &&
+    !isAuthorized
+  ) {
+    return (
+      <div
+        className={css({
+          w: '100%',
+          h: '128px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '4px',
+          borderWidth: '1px',
+          borderStyle: 'dashed',
+          borderColor: 'yellow20',
+          borderRadius: '16px',
+          bg: 'transparent',
+          padding: '24px',
+        })}
+      >
+        <div className={css({ textStyle: 'subheading5', color: 'yellow80' })}>
+          No Course Materials Available
+        </div>
+        <div
+          className={css({
+            textStyle: 'paragraph2',
+            color: 'yellow50',
+            textAlign: 'center',
+          })}
+        >
+          The teacher hasn't uploaded any course materials yet
+        </div>
+      </div>
+    );
+  }
+
+  // Show TileButton in empty state when not editing for authorized users
+  if (
+    !currentMaterials.length &&
+    !pendingMaterials.length &&
+    !isEditing &&
+    isAuthorized
+  ) {
     return (
       <TileButton
         title="Add Course Materials"

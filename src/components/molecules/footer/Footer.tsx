@@ -1,7 +1,7 @@
 'use client';
 
 import { Discord, Instagram, Tiktok } from '@repo/components/atoms/icons';
-import { css } from 'styled-system/css';
+import { css } from '../../../../styled-system/css';
 
 const Footer = () => {
   return (
@@ -11,16 +11,31 @@ const Footer = () => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        bg: 'black50',
+        bg: 'transparent',
+        position: 'absolute',
+        w: '100%',
         bottom: 0,
-        zIndex: 1,
-        padding: '24px 24px',
+        zIndex: 50,
+        padding: '24px 40px',
         backdropFilter: 'auto',
-        backdropBlur: 'sm',
+        backdropBlur: '2px',
       })}
     >
+      {/* Shade */}
+      <div
+        className={css({
+          w: '100%',
+          h: '100%',
+          background:
+            'linear-gradient(0deg, rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0.00) 50%)',
+          position: 'absolute',
+          zIndex: -1,
+          transform: 'translate(-20px, 0px)',
+        })}
+      ></div>
+
       <div className={css({ textStyle: 'paragraph2', color: 'yellow100' })}>
-        ST. BAKERY 2024
+        ST. BAKERY 2025
       </div>
       <div
         className={css({

@@ -1,13 +1,17 @@
-import ButtonMedium from '@repo/components/atoms/buttons/ButtonMedium';
-import { Cancel, Preview, Save } from '@repo/components/atoms/icons';
-import { css } from 'styled-system/css';
+import { Cancel, Save } from '@repo/components/atoms/icons';
+import { css } from '../../../../styled-system/css';
 
 interface EditActionsProps {
   onSave: () => void;
   onCancel: () => void;
+  isSaveDisabled?: boolean;
 }
 
-const EditActions: React.FC<EditActionsProps> = ({ onSave, onCancel }) => {
+const EditActions: React.FC<EditActionsProps> = ({
+  onSave,
+  onCancel,
+  isSaveDisabled = false,
+}) => {
   return (
     <div
       className={css({
@@ -20,25 +24,63 @@ const EditActions: React.FC<EditActionsProps> = ({ onSave, onCancel }) => {
         w: '100%',
       })}
     >
-      <ButtonMedium
+      <button
         onClick={onCancel}
-        color="red100"
-        backgroundColor="red5"
-        borderColor="red20"
-        hoverColor="red100"
-        hoverBackgroundColor="red10"
-        hoverBorderColor="red50"
-        activeColor="altred"
-        activeBackgroundColor="red80"
-        activeBorderColor="red100"
+        className={css({
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '8px',
+          h: '40px',
+          px: '24px',
+          textStyle: 'paragraph1',
+          transition: 'all 0.2s ease-in-out',
+          borderWidth: '1px',
+          borderRadius: '20px',
+          color: 'red100',
+          bg: 'red5',
+          borderColor: 'red20',
+          cursor: 'pointer',
+          _hover: {
+            bg: 'red10',
+            borderColor: 'red50',
+          },
+          _active: {
+            bg: 'red80',
+            color: 'altred',
+          },
+        })}
       >
         Cancel
         <Cancel className={css({ stroke: 'red100', w: '20px', h: '20px' })} />
-      </ButtonMedium>
-      <ButtonMedium
-        color="yellow100"
-        backgroundColor="yellow5"
-        borderColor="yellow20"
+      </button>
+      {/* <button
+        className={css({
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '8px',
+          h: '40px',
+          px: '24px',
+          textStyle: 'paragraph1',
+          transition: 'all 0.2s ease-in-out',
+          borderWidth: '1px',
+          borderRadius: '20px',
+          color: 'yellow100',
+          bg: 'yellow5',
+          borderColor: 'yellow20',
+          cursor: 'pointer',
+          _hover: {
+            bg: 'yellow10',
+            borderColor: 'yellow50',
+          },
+          _active: {
+            bg: 'yellow80',
+            color: 'altyellow',
+          },
+        })}
       >
         Preview
         <Preview
@@ -49,22 +91,49 @@ const EditActions: React.FC<EditActionsProps> = ({ onSave, onCancel }) => {
             w: '20px',
           })}
         />
-      </ButtonMedium>
-      <ButtonMedium
+      </button> */}
+      <button
         onClick={onSave}
-        color="green100"
-        backgroundColor="green5"
-        borderColor="green20"
-        hoverColor="green100"
-        hoverBackgroundColor="green10"
-        hoverBorderColor="green50"
-        activeColor="altgreen"
-        activeBackgroundColor="green80"
-        activeBorderColor="green100"
+        disabled={isSaveDisabled}
+        className={css({
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '8px',
+          h: '40px',
+          px: '24px',
+          textStyle: 'paragraph1',
+          transition: 'all 0.2s ease-in-out',
+          borderWidth: '1px',
+          borderRadius: '20px',
+          color: isSaveDisabled ? 'green20' : 'green100',
+          bg: 'green5',
+          borderColor: isSaveDisabled ? 'green10' : 'green20',
+          cursor: isSaveDisabled ? 'not-allowed' : 'pointer',
+          _hover: isSaveDisabled
+            ? {}
+            : {
+                bg: 'green10',
+                borderColor: 'green50',
+              },
+          _active: isSaveDisabled
+            ? {}
+            : {
+                bg: 'green80',
+                color: 'altgreen',
+              },
+        })}
       >
         Save
-        <Save className={css({ fill: 'green100', w: '20px', h: '20px' })} />
-      </ButtonMedium>
+        <Save
+          className={css({
+            fill: isSaveDisabled ? 'green20' : 'green100',
+            w: '20px',
+            h: '20px',
+          })}
+        />
+      </button>
     </div>
   );
 };

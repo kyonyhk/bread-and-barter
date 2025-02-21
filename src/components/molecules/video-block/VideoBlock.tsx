@@ -6,17 +6,21 @@ import { HStack, VStack } from '../../../../styled-system/jsx';
 
 interface VideoBlockProps {
   children?: ReactNode;
-  courseName: string;
-  teacherName: string;
+  title: string;
+  subtitle: string;
+  programId: string;
+  imageUrl: string;
 }
 
 export default function VideoBlock({
-  courseName,
-  teacherName,
+  title,
+  subtitle,
+  programId,
+  imageUrl,
   children,
 }: VideoBlockProps) {
   return (
-    <Link href="/course-page">
+    <Link href={`/programs/${programId}`}>
       <div
         className={css({
           w: '100%',
@@ -27,7 +31,7 @@ export default function VideoBlock({
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
-          bgImage: 'url(/images/dry-laksa.png)',
+          bgImage: `url(${imageUrl})`,
           bgPosition: 'center',
           bgSize: 'cover',
           position: 'relative',
@@ -36,21 +40,6 @@ export default function VideoBlock({
           cursor: 'pointer',
         })}
       >
-        {/* <Image
-        src="/images/yo-yo.png"
-        width={320}
-        height={620}
-        alt="Yoyo"
-        className={css({
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          zIndex: 0,
-          overflow: 'hidden',
-        })}
-      /> */}
-
         {/* Container Border */}
         <div
           className={css({
@@ -64,8 +53,6 @@ export default function VideoBlock({
             position: 'absolute',
             zIndex: 2,
             _hover: {
-              // borderColor: 'yellow50',
-              // borderWidth: '1px',
               bg: 'yellow5',
             },
           })}
@@ -82,6 +69,7 @@ export default function VideoBlock({
             position: 'absolute',
             zIndex: 1,
             transform: 'translate(-20px, 0px)',
+            borderRadius: '40px',
           })}
         ></div>
 
@@ -96,10 +84,11 @@ export default function VideoBlock({
             position: 'absolute',
             zIndex: 1,
             transform: 'translate(-20px, 20px)',
+            borderRadius: '40px',
           })}
         ></div>
 
-        {/* Container for Profile Photo + Description */}
+        {/* Container for Program Info */}
         <VStack
           className={css({
             gap: '8px',
@@ -108,15 +97,17 @@ export default function VideoBlock({
             alignItems: 'flex-start',
           })}
         >
-          {/* Profile Avatar + Course Name + Teacher Name */}
+          {/* Program Title + Teacher Info */}
           <HStack>
             <Avatar
-              name={teacherName}
+              name={subtitle}
               src="/images/profile-pic.png"
               className={css({ textStyle: 'subheading3' })}
             />
-            <VStack
+            <div
               className={css({
+                display: 'flex',
+                flexDirection: 'column',
                 gap: '2px',
                 alignItems: 'flex-start',
               })}
@@ -127,7 +118,7 @@ export default function VideoBlock({
                   color: 'yellow100',
                 })}
               >
-                {courseName}
+                {title}
               </div>
               <div
                 className={css({
@@ -135,15 +126,10 @@ export default function VideoBlock({
                   color: 'yellow80',
                 })}
               >
-                {teacherName}
+                {subtitle}
               </div>
-            </VStack>
+            </div>
           </HStack>
-          {/* Course Description */}
-          {/* <div className={css({ textStyle: 'paragraph2', color: 'yellow80' })}>
-          Lorem ipsum dolor sit amet consectetur. Id massa donec sit turpis
-          hendrerit etiam. At amet feugiat elit massa eleifend.
-        </div> */}
         </VStack>
       </div>
     </Link>

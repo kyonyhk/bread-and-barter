@@ -1,3 +1,4 @@
+import { useAuth } from '@repo/app/auth/AuthContext';
 import ProgressCell from '@repo/components/molecules/course-creation-progress/ProgressCell';
 import { css } from '../../../../styled-system/css';
 
@@ -8,12 +9,25 @@ interface CourseCreationProgressProps {
     step2Completed: boolean;
     step3Completed: boolean;
   };
+  teacherId?: string;
 }
 
 export default function CourseCreationProgress({
   currentStep,
   checklistProgress,
+  teacherId,
 }: CourseCreationProgressProps) {
+  const { user } = useAuth();
+
+  // Check if user is authorized (teacher or admin)
+  const isAuthorized =
+    user && (user.id === teacherId || user.user_metadata?.is_admin === true);
+
+  // Don't render anything if user is not authorized
+  if (!isAuthorized) {
+    return null;
+  }
+
   const steps = [
     {
       number: 1,

@@ -29,7 +29,7 @@ export default function CourseCredentialsSection({
 
   // Check if user is authorized (teacher or admin)
   const isAuthorized =
-    user && (user.id === teacherId || user.user_metadata?.is_admin === true);
+    !!user && (user.id === teacherId || user.user_metadata?.is_admin === true);
 
   // Reset state when course changes or editing mode is cancelled
   useEffect(() => {
@@ -116,6 +116,7 @@ export default function CourseCredentialsSection({
         isEditing={isEditing}
         onEdit={isAuthorized ? onEdit : undefined}
         onStateChange={handleStateChange}
+        isAuthorized={isAuthorized}
       />
     </CourseAccordion>
   );

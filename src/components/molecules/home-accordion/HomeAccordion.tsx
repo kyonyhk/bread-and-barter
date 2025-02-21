@@ -1,7 +1,7 @@
 import { DownArrow, UpArrow } from '@repo/components/atoms/icons';
 import { useState } from 'react';
-import { css } from 'styled-system/css';
-import { HStack } from 'styled-system/jsx';
+import { css } from '../../../../styled-system/css';
+import { HStack } from '../../../../styled-system/jsx';
 
 interface HomeAccordionProps {
   title: string;

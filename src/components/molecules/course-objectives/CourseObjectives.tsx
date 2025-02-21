@@ -13,6 +13,7 @@ interface CourseObjectivesProps {
   isEditing: boolean;
   onObjectivesChange?: OnStateChangeHandler<string[]>;
   onEdit?: () => void;
+  isAuthorized?: boolean;
 }
 
 const CourseObjectives = ({
@@ -20,6 +21,7 @@ const CourseObjectives = ({
   isEditing,
   onObjectivesChange,
   onEdit,
+  isAuthorized = false,
 }: CourseObjectivesProps) => {
   const [objectives, setObjectives] = useState<string[]>(initialObjectives);
   const [selectedObjectiveIndex, setSelectedObjectiveIndex] = useState<
@@ -111,17 +113,53 @@ const CourseObjectives = ({
     }
   };
 
-  // Show TileButton in empty state when not editing
+  // Show TileButton in empty state when not editing and user is authorized
   if (!initialObjectives.length && !isEditing) {
+    if (isAuthorized) {
+      return (
+        <TileButton
+          title="Add Course Objectives"
+          subtitle="Add up to 3 learning objectives for your course"
+          className={css({
+            borderRadius: '16px',
+          })}
+          onClick={onEdit}
+        />
+      );
+    }
+
+    // Show "no data" container for unauthorized users
     return (
-      <TileButton
-        title="Add Course Objectives"
-        subtitle="Add up to 3 learning objectives for your course"
+      <div
         className={css({
+          w: '100%',
+          h: '128px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '4px',
+          borderWidth: '1px',
+          borderStyle: 'dashed',
+          borderColor: 'yellow20',
           borderRadius: '16px',
+          bg: 'transparent',
+          padding: '24px',
         })}
-        onClick={onEdit}
-      />
+      >
+        <div className={css({ textStyle: 'subheading5', color: 'yellow80' })}>
+          No Course Objectives Available
+        </div>
+        <div
+          className={css({
+            textStyle: 'paragraph2',
+            color: 'yellow50',
+            textAlign: 'center',
+          })}
+        >
+          The teacher hasn't added any objectives for this course yet
+        </div>
+      </div>
     );
   }
 

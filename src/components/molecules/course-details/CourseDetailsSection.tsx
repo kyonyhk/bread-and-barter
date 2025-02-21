@@ -1,3 +1,4 @@
+import { useAuth } from '@repo/app/auth/AuthContext';
 import { supabase } from '@repo/lib/supabase';
 import { Course } from '@repo/types/course';
 import {
@@ -5,6 +6,7 @@ import {
   CourseSectionProps,
 } from '@repo/types/courseSection';
 import { useEffect, useState } from 'react';
+import { css } from '../../../../styled-system/css';
 import CourseAccordion from '../course-accordion/CourseAccordion';
 import CourseDetails from './CourseDetails';
 
@@ -12,6 +14,7 @@ interface CourseDetailsSectionProps extends CourseSectionProps {
   course: Course;
   changesSavedTimeout: number;
   changesCancelledTimeout: number;
+  teacherId?: string;
 }
 
 export default function CourseDetailsSection({
@@ -24,12 +27,18 @@ export default function CourseDetailsSection({
   isCancelled,
   changesSavedTimeout,
   changesCancelledTimeout,
+  teacherId,
 }: CourseDetailsSectionProps) {
+  const { user } = useAuth();
   const [hasChanges, setHasChanges] = useState(false);
   const [currentData, setCurrentData] = useState<CourseDetailsSaveData>({
     duration: course.duration,
     courseDetails: course.course_details,
   });
+
+  // Check if user is authorized (teacher or admin)
+  const isAuthorized =
+    user && (user.id === teacherId || user.user_metadata?.is_admin === true);
 
   // Reset state when course changes or editing mode changes
   useEffect(() => {
@@ -122,26 +131,73 @@ export default function CourseDetailsSection({
     onCancel();
   };
 
-  return (
-    <CourseAccordion
-      title="Course Details"
-      initialExpanded={true}
-      isEditing={isEditing}
-      onEdit={onEdit}
-      onSave={handleSave}
-      onCancel={handleCancel}
-      isSaved={isSaved}
-      isCancelled={isCancelled}
-      hasChanges={hasChanges}
-    >
+  const renderContent = () => {
+    const hasNoData = !course.duration && !course.course_details;
+
+    if (hasNoData) {
+      if (!isEditing && !isAuthorized) {
+        return (
+          <div
+            className={css({
+              w: '100%',
+              h: '128px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '4px',
+              borderWidth: '1px',
+              borderStyle: 'dashed',
+              borderColor: 'yellow20',
+              borderRadius: '16px',
+              bg: 'transparent',
+              padding: '24px',
+            })}
+          >
+            <div
+              className={css({ textStyle: 'subheading5', color: 'yellow80' })}
+            >
+              No Course Details Available
+            </div>
+            <div
+              className={css({
+                textStyle: 'paragraph2',
+                color: 'yellow50',
+                textAlign: 'center',
+              })}
+            >
+              The teacher hasn't added any details for this course yet
+            </div>
+          </div>
+        );
+      }
+    }
+
+    return (
       <CourseDetails
         duration={course.duration}
         courseDetails={course.course_details}
         isEditing={isEditing}
         onCancel={onCancel}
         onStateChange={handleStateChange}
-        onEdit={onEdit}
+        onEdit={isAuthorized ? onEdit : undefined}
       />
+    );
+  };
+
+  return (
+    <CourseAccordion
+      title="Course Details"
+      initialExpanded={true}
+      isEditing={isEditing}
+      onEdit={isAuthorized ? onEdit : undefined}
+      onSave={handleSave}
+      onCancel={handleCancel}
+      isSaved={isSaved}
+      isCancelled={isCancelled}
+      hasChanges={hasChanges}
+    >
+      {renderContent()}
     </CourseAccordion>
   );
 }

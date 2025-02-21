@@ -403,6 +403,7 @@ export default function ProgramPage({ params }: { params: { id: string } }) {
           <CourseCreationProgress
             currentStep={2}
             checklistProgress={checklistProgress}
+            teacherId={program?.teacher?.id}
           />
         </div>
       )}

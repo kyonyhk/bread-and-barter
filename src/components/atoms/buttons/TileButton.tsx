@@ -4,8 +4,9 @@ import { Plus } from '../icons';
 interface TileButtonProps {
   title: string;
   subtitle: string;
-  className: string;
+  className?: string;
   onClick?: () => void;
+  icon?: React.ReactNode;
 }
 
 export default function TileButton({
@@ -13,6 +14,7 @@ export default function TileButton({
   subtitle,
   className,
   onClick,
+  icon,
 }: TileButtonProps) {
   return (
     <div
@@ -37,13 +39,15 @@ export default function TileButton({
         className
       )}
     >
-      <Plus
-        className={css({
-          fill: 'yellow100',
-          h: '40px',
-          w: '40px',
-        })}
-      />
+      {icon || (
+        <Plus
+          className={css({
+            fill: 'yellow100',
+            h: '40px',
+            w: '40px',
+          })}
+        />
+      )}
 
       <div>
         <div

@@ -1,13 +1,22 @@
-import { css } from 'styled-system/css';
+import { css } from '../../../../styled-system/css';
 import { FileDownload, Folder } from '../icons';
 
 interface DownloadProps {
   filename: string;
+  file_url?: string;
+  isEditing?: boolean;
 }
 
-const Download = ({ filename }: DownloadProps) => {
+const Download = ({ filename, file_url, isEditing = false }: DownloadProps) => {
+  const handleDownload = () => {
+    if (file_url && !isEditing) {
+      window.open(file_url, '_blank');
+    }
+  };
+
   return (
     <div
+      onClick={handleDownload}
       className={css({
         w: '100%',
         display: 'flex',
@@ -18,8 +27,11 @@ const Download = ({ filename }: DownloadProps) => {
         borderWidth: '1px',
         borderColor: 'yellow20',
         borderRadius: '16px',
-        cursor: 'pointer',
-        _hover: { bg: 'yellow20', borderColor: 'yellow50' },
+        cursor: file_url && !isEditing ? 'pointer' : 'default',
+        _hover:
+          file_url && !isEditing
+            ? { bg: 'yellow20', borderColor: 'yellow50' }
+            : {},
       })}
     >
       <div
@@ -36,33 +48,35 @@ const Download = ({ filename }: DownloadProps) => {
           {filename}
         </div>
       </div>
-      <div
-        className={css({
-          display: 'flex',
-          flexDirection: 'row',
-          gap: '8px',
-          justifyContent: 'center',
-          alignItems: 'center',
-          cursor: 'pointer',
-          _hover: { color: 'yellow100', fill: 'yellow100' },
-        })}
-      >
-        <FileDownload
-          className={css({
-            fill: 'yellow50',
-            w: '23px',
-            h: '23px',
-          })}
-        />
+      {!isEditing && (
         <div
           className={css({
-            textStyle: 'paragraph2',
-            color: 'yellow50',
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '8px',
+            justifyContent: 'center',
+            alignItems: 'center',
+            cursor: 'pointer',
+            _hover: { color: 'yellow100', fill: 'yellow100' },
           })}
         >
-          Download
+          <FileDownload
+            className={css({
+              fill: 'yellow50',
+              w: '23px',
+              h: '23px',
+            })}
+          />
+          <div
+            className={css({
+              textStyle: 'paragraph2',
+              color: 'yellow50',
+            })}
+          >
+            Download
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

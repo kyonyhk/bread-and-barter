@@ -1,162 +1,73 @@
 'use client';
 
-import HomeAccordion from '@repo/components/molecules/home-accordion/HomeAccordion';
-import PhotoBlock from '@repo/components/molecules/photo-block/PhotoBlock';
-import VideoBlock from '@repo/components/molecules/video-block/VideoBlock';
+import ButtonLarge from '@repo/components/atoms/buttons/ButtonLarge';
+import Link from 'next/link';
 import { css } from '../../styled-system/css';
 
-// const { Root, Item, ItemTrigger, ItemIndicator, ItemContent } =
-//   AccordionComponents;
+interface Course {
+  id: string;
+  name: string;
+  description: string;
+  course_number: number;
+  price: number;
+  duration: string;
+  image_url: string;
+}
 
-export default function Home() {
+interface Program {
+  id: string;
+  name: string;
+  description: string;
+  status: string;
+  courses: Course[];
+}
+
+interface Teacher {
+  id: string;
+  first_name: string;
+  last_name: string;
+  description: string;
+  interests: string[];
+  is_teacher: boolean;
+  programs: Program[];
+}
+
+export default function LandingPage() {
   return (
-    // Page Wrapper
     <div
       className={css({
         w: '100vw',
-        h: '100%',
+        h: '100vh',
         bg: 'black',
         display: 'flex',
         flexDirection: 'column',
-        gap: '80px',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '160px 0px 160px 0px',
+        gap: '32px',
       })}
     >
-      {/* Grid Section */}
       <div
         className={css({
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '40px',
-          w: '100vw',
-          maxW: '1080px',
-          h: '100%',
-          padding: '0px 40px',
+          textStyle: 'heading1',
+          color: 'yellow100',
+          textAlign: 'center',
         })}
       >
-        {/* Heading */}
-        <div
-          className={css({
-            textStyle: 'heading3',
-            color: 'yellow100',
-            w: '100%',
-          })}
-        >
-          What are you looking to learn today?
-        </div>
-
-        {/* Grid Wrapper */}
-        <div
-          className={css({
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '16px',
-          })}
-        >
-          {/* Grid 1 */}
-          <div
-            className={css({
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '16px',
-            })}
-          >
-            <div
-              className={css({
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px',
-              })}
-            >
-              <PhotoBlock courseName="Dry Laksa" teacherName="John Goh" />
-              <PhotoBlock courseName="Dry Laksa" teacherName="John Goh" />
-            </div>
-            <div
-              className={css({
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px',
-              })}
-            >
-              <PhotoBlock courseName="Dry Laksa" teacherName="John Goh" />
-              <PhotoBlock courseName="Dry Laksa" teacherName="John Goh" />
-            </div>
-            <VideoBlock courseName="Dry Laksa" teacherName="John Goh" />
-          </div>
-
-          {/* Grid 2 */}
-          <div
-            className={css({
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '16px',
-            })}
-          >
-            <div
-              className={css({
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px',
-              })}
-            >
-              <PhotoBlock courseName="Dry Laksa" teacherName="John Goh" />
-              <PhotoBlock courseName="Dry Laksa" teacherName="John Goh" />
-            </div>
-            <div
-              className={css({
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px',
-              })}
-            >
-              <PhotoBlock courseName="Dry Laksa" teacherName="John Goh" />
-              <PhotoBlock courseName="Dry Laksa" teacherName="John Goh" />
-            </div>
-            <VideoBlock courseName="Dry Laksa" teacherName="John Goh" />
-          </div>
-        </div>
+        Welcome to Bread & Barter
       </div>
-
-      {/* Q&A Section */}
       <div
         className={css({
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '16px',
-          w: '100vw',
-          maxW: '1080px',
-          h: '100%',
-          padding: '0px 40px 80px 40px',
+          textStyle: 'paragraph1',
+          color: 'yellow50',
+          textAlign: 'center',
+          maxW: '600px',
         })}
       >
-        {/* Heading */}
-        <div
-          className={css({
-            textStyle: 'heading3',
-            color: 'yellow100',
-            w: '100%',
-          })}
-        >
-          Answering your questions.
-        </div>
-        <HomeAccordion title="Question 01">
-          Some Q&A answers here.
-        </HomeAccordion>
-        <HomeAccordion title="Question 02">
-          Some Q&A answers here.
-        </HomeAccordion>
-        <HomeAccordion title="Question 03">
-          Some Q&A answers here.
-        </HomeAccordion>
-        <HomeAccordion title="Question 04">
-          Some Q&A answers here.
-        </HomeAccordion>
-        <HomeAccordion title="Question 05">
-          Some Q&A answers here.
-        </HomeAccordion>
+        Your platform for discovering and learning new skills through bartering.
       </div>
+      <Link href="/home">
+        <ButtonLarge>Explore Courses</ButtonLarge>
+      </Link>
     </div>
   );
 }

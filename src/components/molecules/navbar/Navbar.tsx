@@ -1,10 +1,13 @@
 'use client';
 
+import { useAuth } from '@repo/app/auth/AuthContext';
+import ButtonMedium from '@repo/components/atoms/buttons/ButtonMedium';
 import { NavMenu } from '@repo/components/atoms/icons';
 import Logo from '@repo/components/atoms/logo/Logo';
 import { useProfilePopup } from '@repo/contexts/profile-popup-context';
 import Link from 'next/link';
-import { css } from 'styled-system/css';
+import { usePathname } from 'next/navigation';
+import { css } from '../../../../styled-system/css';
 
 // const NavbarWrapper = styled.nav`
 //   display: flex;
@@ -22,6 +25,10 @@ import { css } from 'styled-system/css';
 
 const Navbar: React.FC = () => {
   const { toggleProfilePopup } = useProfilePopup();
+  const { user } = useAuth();
+  const pathname = usePathname();
+
+  const isAuthPage = pathname?.startsWith('/auth/');
 
   return (
     <nav
@@ -30,13 +37,14 @@ const Navbar: React.FC = () => {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '24px 24px',
-        bg: 'black50',
-        position: 'sticky',
+        padding: '24px 40px',
+        bg: 'transparent',
+        position: 'fixed',
+        w: '100%',
         top: 0,
         zIndex: 10000,
         backdropFilter: 'auto',
-        backdropBlur: 'sm',
+        backdropBlur: '4px',
       })}
     >
       {/* Shade */}
@@ -55,18 +63,45 @@ const Navbar: React.FC = () => {
       <Link href="/home">
         <Logo />
       </Link>
-      <div className={css({ cursor: 'pointer' })}>
-        <NavMenu
-          className={css({
-            w: '40px',
-            h: '40px',
-            stroke: 'yellow50',
-            _hover: {
-              stroke: 'yellow100',
-            },
-          })}
-          onClick={toggleProfilePopup}
-        />
+      <div
+        className={css({
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '16px',
+          alignItems: 'center',
+        })}
+      >
+        <Link href="/teach">
+          <ButtonMedium className={css({ w: 'fit-content' })}>
+            Teach a Course
+          </ButtonMedium>
+        </Link>
+
+        {user ? (
+          <div className={css({ cursor: 'pointer' })}>
+            <NavMenu
+              className={css({
+                w: '24px',
+                h: '24px',
+                stroke: 'yellow50',
+                _hover: {
+                  stroke: 'yellow100',
+                },
+              })}
+              onClick={toggleProfilePopup}
+            />
+          </div>
+        ) : !isAuthPage ? (
+          <>
+            <Link href="/auth/signup">
+              <ButtonMedium
+                className={css({ w: 'fit-content', bg: 'yellow20' })}
+              >
+                Sign Up / Log In
+              </ButtonMedium>
+            </Link>
+          </>
+        ) : null}
       </div>
     </nav>
   );

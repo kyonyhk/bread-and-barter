@@ -1,13 +1,17 @@
-import { css } from 'styled-system/css';
+import { css } from '../../../../styled-system/css';
 
 interface DividerProps {
   backgroundColor?: string;
 }
 
-const Divider = ({ backgroundColor = 'yellow20' }: DividerProps) => {
+export const Divider = ({ backgroundColor }: DividerProps) => {
   return (
-    <div className={css({ w: '100%', h: '1px', bg: backgroundColor })}></div>
+    <div
+      className={css({
+        width: '100%',
+        height: '1px',
+        backgroundColor: 'yellow20',
+      })}
+    />
   );
 };
-
-export default Divider;

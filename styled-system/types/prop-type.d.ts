@@ -4,12 +4,12 @@ import type { CssProperties } from './system-types';
 import type { Tokens } from '../tokens/index';
 
 export interface UtilityValues {
-	aspectRatio: Tokens["aspectRatios"];
+	zIndex: Tokens["zIndex"];
 	top: Tokens["spacing"];
 	left: Tokens["spacing"];
+	inset: "auto" | Tokens["spacing"];
 	insetInline: Tokens["spacing"];
 	insetBlock: Tokens["spacing"];
-	inset: "auto" | Tokens["spacing"];
 	insetBlockEnd: Tokens["spacing"];
 	insetBlockStart: Tokens["spacing"];
 	insetInlineEnd: Tokens["spacing"];
@@ -19,12 +19,8 @@ export interface UtilityValues {
 	float: "start" | "end" | CssProperties["float"];
 	hideFrom: Tokens["breakpoints"];
 	hideBelow: Tokens["breakpoints"];
-	flexBasis: Tokens["spacing"] | "1/2" | "1/3" | "2/3" | "1/4" | "2/4" | "3/4" | "1/5" | "2/5" | "3/5" | "4/5" | "1/6" | "2/6" | "3/6" | "4/6" | "5/6" | "1/12" | "2/12" | "3/12" | "4/12" | "5/12" | "6/12" | "7/12" | "8/12" | "9/12" | "10/12" | "11/12" | "full";
+	flexBasis: Tokens["sizes"] | "1/2" | "1/3" | "2/3" | "1/4" | "2/4" | "3/4" | "1/5" | "2/5" | "3/5" | "4/5" | "1/6" | "2/6" | "3/6" | "4/6" | "5/6" | "1/12" | "2/12" | "3/12" | "4/12" | "5/12" | "6/12" | "7/12" | "8/12" | "9/12" | "10/12" | "11/12" | "full";
 	flex: "1" | "auto" | "initial" | "none";
-	gridTemplateColumns: "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12";
-	gridTemplateRows: "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12";
-	gridColumn: "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12" | "full";
-	gridRow: "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "11" | "12" | "full";
 	gridAutoColumns: "min" | "max" | "fr";
 	gridAutoRows: "min" | "max" | "fr";
 	gap: Tokens["spacing"];
@@ -146,7 +142,7 @@ export interface UtilityValues {
 	transitionDuration: Tokens["durations"];
 	transition: "all" | "common" | "background" | "colors" | "opacity" | "shadow" | "transform";
 	animation: Tokens["animations"];
-	animationName: "spin" | "ping" | "pulse" | "bounce";
+	animationName: "fade-in" | "fade-out" | "slide-in" | "slide-out" | "slide-in-left" | "slide-out-left" | "slide-in-right" | "slide-out-right" | "collapse-in" | "collapse-out" | "fadeIn" | "fadeOut" | "skeleton-pulse";
 	animationTimingFunction: Tokens["easings"];
 	animationDuration: Tokens["durations"];
 	animationDelay: Tokens["durations"];
@@ -162,6 +158,8 @@ export interface UtilityValues {
 	accentColor: Tokens["colors"];
 	caretColor: Tokens["colors"];
 	scrollbar: "visible" | "hidden";
+	scrollbarColor: Tokens["colors"];
+	scrollbarWidth: Tokens["sizes"];
 	scrollMargin: Tokens["spacing"];
 	scrollMarginLeft: Tokens["spacing"];
 	scrollMarginRight: Tokens["spacing"];
@@ -196,18 +194,18 @@ export interface UtilityValues {
 	srOnly: boolean;
 	debug: boolean;
 	containerName: CssProperties["containerName"];
-	colorPalette: "current" | "transparent" | "rose" | "pink" | "fuchsia" | "purple" | "violet" | "indigo" | "blue" | "sky" | "cyan" | "teal" | "emerald" | "green" | "lime" | "yellow" | "amber" | "orange" | "red" | "neutral" | "stone" | "zinc" | "gray" | "slate" | "yellow100" | "yellow80" | "yellow50" | "yellow20" | "yellow10" | "yellow5" | "altyellow" | "green100" | "green80" | "green50" | "green20" | "green10" | "green5" | "altgreen" | "red100" | "red80" | "red50" | "red20" | "red10" | "red5" | "altred" | "black" | "white";
-	textStyle: "heading1" | "heading2" | "heading3" | "heading4" | "subheading1" | "subheading2" | "subheading3" | "subheading4" | "subheading5" | "paragraph1" | "paragraph2" | "paragraph3" | "paragraph4";
+	colorPalette: "current" | "transparent" | "gray" | "gray.light" | "gray.dark" | "neutral" | "neutral.light" | "neutral.dark" | "yellow100" | "yellow80" | "yellow50" | "yellow20" | "yellow10" | "yellow5" | "altyellow" | "orange100" | "orange80" | "orange50" | "orange20" | "orange10" | "orange5" | "altorange" | "green100" | "green80" | "green50" | "green20" | "green10" | "green5" | "altgreen" | "red100" | "red80" | "red50" | "red20" | "red10" | "red5" | "altred" | "black" | "black50" | "white" | "accent" | "bg" | "fg" | "border";
+	textStyle: "heading1" | "heading2" | "heading3" | "heading4" | "subheading1" | "subheading2" | "subheading3" | "subheading4" | "subheading5" | "paragraph1" | "paragraph2" | "paragraph3" | "paragraph4" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl";
 }
 
 
 
-type WithColorOpacityModifier<T> = T extends string ? `${T}/${string}` : T
+type WithColorOpacityModifier<T> = [T] extends [string] ? `${T}/${string}` & { __colorOpacityModifier?: true } : never
 
 type ImportantMark = "!" | "!important"
 type WhitespaceImportant = ` ${ImportantMark}`
 type Important = ImportantMark | WhitespaceImportant
-type WithImportant<T> = T extends string ? `${T}${Important}` & { __important?: true } : T;
+type WithImportant<T> = [T] extends [string] ? `${T}${Important}` & { __important?: true } : never
 
 /**
  * Only relevant when using `strictTokens` or `strictPropertyValues` in your config.

@@ -1,12 +1,13 @@
 import { Avatar } from '@repo/components/atoms/avatar';
 import { Star } from '@repo/components/atoms/icons';
-import { css } from 'styled-system/css';
+import { css } from '../../../../styled-system/css';
 
 interface TeacherProfileProps {
   name: string;
   genre: string;
   lessonsTaught: number;
   reviewsCount: number;
+  description: string;
 }
 
 export default function TeacherProfile({
@@ -14,6 +15,7 @@ export default function TeacherProfile({
   genre,
   lessonsTaught,
   reviewsCount,
+  description,
 }: TeacherProfileProps) {
   return (
     <div
@@ -31,7 +33,7 @@ export default function TeacherProfile({
       })}
     >
       {/* Avatar */}
-      <div className={css({ minW: '160px' })}>
+      <div className={css({ minW: '100px' })}>
         <Avatar
           name={name}
           src="/images/profile-pic.png"
@@ -47,6 +49,7 @@ export default function TeacherProfile({
           display: 'flex',
           flexDirection: 'column',
           gap: '16px',
+          w: '100%',
         })}
       >
         <div
@@ -114,14 +117,7 @@ export default function TeacherProfile({
           </div>
         </div>
         <div className={css({ textStyle: 'paragraph1', color: 'yellow80' })}>
-          Hello, fellow food enthusiasts! I'm John, your friendly Dry Laksa
-          instructor. Cooking has always been my passion, and I'm thrilled to
-          share my love for this delightful Southeast Asian dish with you all.
-          In my Dry Laksa classes, you can expect a hands-on and interactive
-          cooking experience. We'll start by delving into the history and
-          origins of this dish before diving into the preparation process. I'll
-          share time-tested techniques, secret ingredient tips, and the
-          subtleties of balancing flavors that make Dry Laksa truly special.
+          {description}
         </div>
       </div>
     </div>

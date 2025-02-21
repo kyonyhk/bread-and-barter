@@ -6,9 +6,13 @@ import {
 } from '@repo/components/atoms/fonts/fonts';
 import ClientLayout from '@repo/components/layouts/ClientLayout';
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import React from 'react';
-import { css } from 'styled-system/css';
+import { css } from '../../styled-system/css';
+import { AuthProvider } from './auth/AuthContext';
 import './globals.css';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Bread & Barter',
@@ -17,9 +21,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <head>
@@ -34,7 +38,9 @@ export default function RootLayout({
         })}
       >
         <FontStyleDeclaration />
-        <ClientLayout>{children}</ClientLayout>
+        <AuthProvider>
+          <ClientLayout>{children}</ClientLayout>
+        </AuthProvider>
       </body>
     </html>
   );

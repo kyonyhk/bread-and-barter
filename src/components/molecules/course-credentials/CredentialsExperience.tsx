@@ -7,6 +7,7 @@ interface CredentialsExperienceProps {
   isEditing: boolean;
   onStateChange?: (data: { experience: string } | null) => void;
   onEdit?: () => void;
+  isAuthorized?: boolean;
 }
 
 const CredentialsExperience = ({
@@ -14,6 +15,7 @@ const CredentialsExperience = ({
   isEditing,
   onStateChange,
   onEdit,
+  isAuthorized = false,
 }: CredentialsExperienceProps) => {
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newExperience = e.target.value;
@@ -22,8 +24,44 @@ const CredentialsExperience = ({
     }
   };
 
-  // Show TileButton in empty state when not editing
-  if (!experience && !isEditing) {
+  // Show "no data" container for unauthorized users when there's no experience
+  if (!experience && !isEditing && !isAuthorized) {
+    return (
+      <div
+        className={css({
+          w: '100%',
+          h: '128px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '4px',
+          borderWidth: '1px',
+          borderStyle: 'dashed',
+          borderColor: 'yellow20',
+          borderRadius: '16px',
+          bg: 'transparent',
+          padding: '24px',
+        })}
+      >
+        <div className={css({ textStyle: 'subheading5', color: 'yellow80' })}>
+          No Credentials & Experience Available
+        </div>
+        <div
+          className={css({
+            textStyle: 'paragraph2',
+            color: 'yellow50',
+            textAlign: 'center',
+          })}
+        >
+          The teacher hasn't added any credentials or experience yet
+        </div>
+      </div>
+    );
+  }
+
+  // Show TileButton in empty state when not editing for authorized users
+  if (!experience && !isEditing && isAuthorized) {
     return (
       <TileButton
         title="Add Credentials & Experience"

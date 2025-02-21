@@ -42,7 +42,7 @@ export default function CourseMaterialsSection({
 
   // Check if user is authorized (teacher or admin)
   const isAuthorized =
-    user && (user.id === teacherId || user.user_metadata?.is_admin === true);
+    !!user && (user.id === teacherId || user.user_metadata?.is_admin === true);
 
   const [hasChanges, setHasChanges] = useState(false);
   const [currentMaterials, setCurrentMaterials] = useState<CourseMaterial[]>(
@@ -317,6 +317,7 @@ export default function CourseMaterialsSection({
         isEditing={isEditing}
         onStateChange={handleStateChange}
         onEdit={isAuthorized ? onEdit : undefined}
+        isAuthorized={isAuthorized}
       />
     </CourseAccordion>
   );
