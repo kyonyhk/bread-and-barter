@@ -16,6 +16,8 @@ const Dropdown: React.FC<DropdownProps> = ({
 }) => {
   return (
     <select
+      value={value}
+      onChange={onChange}
       className={`${css({
         w: '100%',
         h: '40px',

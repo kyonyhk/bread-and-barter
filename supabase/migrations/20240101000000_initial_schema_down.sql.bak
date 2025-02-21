@@ -1,0 +1,35 @@
+-- First drop all constraints
+ALTER TABLE teaching.course_timeslots DROP CONSTRAINT IF EXISTS fk_course_timeslots;
+ALTER TABLE teaching.course_materials DROP CONSTRAINT IF EXISTS fk_course_materials;
+ALTER TABLE teaching.course_objectives DROP CONSTRAINT IF EXISTS fk_course_objectives;
+ALTER TABLE teaching.courses DROP CONSTRAINT IF EXISTS fk_program;
+
+-- Drop indexes
+DROP INDEX IF EXISTS reviews.idx_reviews_booking;
+DROP INDEX IF EXISTS payments.idx_transactions_booking;
+DROP INDEX IF EXISTS bookings.idx_bookings_student;
+DROP INDEX IF EXISTS bookings.idx_bookings_course;
+DROP INDEX IF EXISTS teaching.idx_timeslots_course;
+DROP INDEX IF EXISTS teaching.idx_materials_course;
+DROP INDEX IF EXISTS teaching.idx_objectives_course;
+DROP INDEX IF EXISTS teaching.idx_courses_program;
+DROP INDEX IF EXISTS teaching.idx_programs_teacher;
+DROP INDEX IF EXISTS auth.idx_users_email;
+
+-- Drop tables in reverse order (because of dependencies)
+DROP TABLE IF EXISTS reviews.course_reviews;
+DROP TABLE IF EXISTS payments.transactions;
+DROP TABLE IF EXISTS bookings.course_bookings;
+DROP TABLE IF EXISTS teaching.course_timeslots;
+DROP TABLE IF EXISTS teaching.course_materials;
+DROP TABLE IF EXISTS teaching.course_objectives;
+DROP TABLE IF EXISTS teaching.courses;
+DROP TABLE IF EXISTS teaching.programs;
+DROP TABLE IF EXISTS auth.users CASCADE;
+
+-- Drop schemas
+DROP SCHEMA IF EXISTS reviews;
+DROP SCHEMA IF EXISTS payments;
+DROP SCHEMA IF EXISTS bookings;
+DROP SCHEMA IF EXISTS teaching;
+-- DROP SCHEMA IF EXISTS auth; 

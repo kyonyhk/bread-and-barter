@@ -1,9 +1,9 @@
 import ButtonNoBorder from '@repo/components/atoms/buttons/ButtonNoBorder';
-import Divider from '@repo/components/atoms/divider/Divider';
+import { Divider } from '@repo/components/atoms/divider/';
 import { Plus } from '@repo/components/atoms/icons';
 import TextArea from '@repo/components/atoms/textarea/TextArea';
 import { useState } from 'react';
-import { css } from 'styled-system/css';
+import { css } from '../../../../styled-system/css';
 import EditActions from '../edit-actions/EditActions';
 
 interface EditObjectiveProps {
@@ -79,7 +79,7 @@ const EditObjectives = ({
             onCancel={onCancel}
           />
         </div>
-        <Divider />
+        <Divider backgroundColor="yellow20" />
       </>
     </div>
   ) : null;

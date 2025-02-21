@@ -13,8 +13,8 @@ export const Plus = createIcon({
     </>
   ),
   defaultProps: {
-    width: `100%`,
-    height: `100%`,
-    fill: `none`,
+    width: '24px',
+    height: '24px',
+    fill: 'currentColor',
   },
 });

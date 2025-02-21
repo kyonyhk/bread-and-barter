@@ -1,6 +1,6 @@
 import TextArea from '@repo/components/atoms/textarea/TextArea';
 import { useState } from 'react';
-import { css } from 'styled-system/css';
+import { css } from '../../../../styled-system/css';
 import EditActions from '../edit-actions/EditActions';
 
 interface CourseRequirementsProps {

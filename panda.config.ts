@@ -45,6 +45,27 @@ export default defineConfig({
           altyellow: {
             DEFAULT: { value: 'rgba(255, 241, 203, 1.0)' },
           },
+          orange100: {
+            DEFAULT: { value: 'rgba(255, 149, 0, 1.0)' },
+          },
+          orange80: {
+            DEFAULT: { value: 'rgba(255, 149, 0, 0.8)' },
+          },
+          orange50: {
+            DEFAULT: { value: 'rgba(255, 149, 0, 0.5)' },
+          },
+          orange20: {
+            DEFAULT: { value: 'rgba(255, 149, 0, 0.2)' },
+          },
+          orange10: {
+            DEFAULT: { value: 'rgba(255, 149, 0, 0.1)' },
+          },
+          orange5: {
+            DEFAULT: { value: 'rgba(255, 149, 0, 0.05)' },
+          },
+          altorange: {
+            DEFAULT: { value: 'rgba(255, 218, 179, 1.0)' },
+          },
           green100: {
             DEFAULT: { value: 'rgba(48, 255, 205, 1.0)' },
           },
@@ -182,6 +203,7 @@ export default defineConfig({
           fontFamily: 'pptelegrafregular',
           fontWeight: '400',
           fontSize: '16px',
+          lineHeight: '20px',
         },
       },
       paragraph2: {
@@ -189,6 +211,7 @@ export default defineConfig({
           fontFamily: 'pptelegrafregular',
           fontWeight: '400',
           fontSize: '14px',
+          lineHeight: '16px',
         },
       },
       paragraph3: {
@@ -196,6 +219,7 @@ export default defineConfig({
           fontFamily: 'pptelegrafregular',
           fontWeight: '400',
           fontSize: '12px',
+          lineHeight: '14px',
         },
       },
       paragraph4: {
@@ -203,13 +227,14 @@ export default defineConfig({
           fontFamily: 'pptelegrafregular',
           fontWeight: '400',
           fontSize: '10px',
+          lineHeight: '12px',
         },
       },
     },
   },
 
   // The output directory for your css system
-  emitPackage: true,
+  // emitPackage: true,
   outdir: 'styled-system',
   jsxFramework: 'react',
 });

@@ -1,5 +1,7 @@
 export * from './Cancel';
 export * from './Check';
+export * from './CheckboxCircle';
+export * from './Circle';
 export * from './Delete';
 export * from './Discord';
 export * from './Edit';

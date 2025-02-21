@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import { css } from '../../../../styled-system/css';
-import { VStack } from '../../../../styled-system/jsx';
 
 export default function CourseProfileTile() {
   return (
@@ -35,7 +34,14 @@ export default function CourseProfileTile() {
           w/ Rachel Tan
         </div>
       </div>
-      <VStack className={css({ gap: '4px', alignItems: 'flex-start' })}>
+      <div
+        className={css({
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '4px',
+          alignItems: 'flex-start',
+        })}
+      >
         <div
           className={css({
             textStyle: 'subheading5',
@@ -60,7 +66,7 @@ export default function CourseProfileTile() {
             10-11am
           </div>
         </div>
-      </VStack>
+      </div>
     </div>
   );
 }

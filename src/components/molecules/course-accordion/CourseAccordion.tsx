@@ -6,41 +6,28 @@ import {
   UpArrow,
 } from '@repo/components/atoms/icons';
 import Tag from '@repo/components/atoms/tags/Tag';
-import { useState } from 'react';
-import { css } from 'styled-system/css';
-import { HStack } from 'styled-system/jsx';
+import React, { useState } from 'react';
+import { css } from '../../../../styled-system/css';
+import { HStack } from '../../../../styled-system/jsx';
+import EditActions from '../edit-actions/EditActions';
 
-interface SaveCourseData {}
-
-interface CourseDetailsSaveData extends SaveCourseData {
-  duration: string;
-  courseDetails: string;
-}
-
-interface CourseObjectivesSaveData extends SaveCourseData {
-  objectives: string[];
-}
-interface CredentialsExperienceSaveData extends SaveCourseData {
-  experience: string;
-}
-
-interface CourseRequirementsSaveData extends SaveCourseData {
-  requirements: string;
-}
-
-interface CourseAccordionProps<T extends SaveCourseData> {
+interface CourseAccordionProps {
   title: string;
-  children: React.ReactNode;
   initialExpanded: boolean;
+  isEditing: boolean;
   onEdit?: () => void;
-  onSave?: (data: T) => void;
+  onSave?: () => void | Promise<void>;
   onCancel?: () => void;
-  isEditing?: boolean;
   isSaved?: boolean;
   isCancelled?: boolean;
+  noBorder?: boolean;
+  hasChanges?: boolean;
+  isLoading?: boolean;
+  error?: string | null;
+  children: React.ReactNode;
 }
 
-const CourseAccordion = <T extends SaveCourseData>({
+const CourseAccordion = ({
   title,
   initialExpanded,
   children,
@@ -50,7 +37,11 @@ const CourseAccordion = <T extends SaveCourseData>({
   isEditing,
   isSaved,
   isCancelled,
-}: CourseAccordionProps<T>) => {
+  noBorder = false,
+  hasChanges = false,
+  isLoading = false,
+  error = null,
+}: CourseAccordionProps) => {
   const [isExpanded, setIsExpanded] = useState(initialExpanded);
 
   const toggleAccordion = () => {
@@ -60,15 +51,15 @@ const CourseAccordion = <T extends SaveCourseData>({
   return (
     <div
       className={css({
-        maxW: '720px',
+        w: '100%',
         display: 'flex',
         flexDirection: 'column',
-        gap: '24px',
-        padding: '24px',
-        borderWidth: '1px',
+        gap: '16px',
+        padding: noBorder ? '0px' : '24px',
+        borderWidth: noBorder ? '0px' : '1px',
         borderColor: isExpanded ? 'yellow10' : 'yellow10',
-        borderRadius: '40px',
-        bg: isExpanded ? 'yellow5' : 'transparent',
+        borderRadius: noBorder ? '0px' : '40px',
+        bg: noBorder ? 'transparent' : isExpanded ? 'yellow5' : 'transparent',
       })}
     >
       <HStack
@@ -90,7 +81,7 @@ const CourseAccordion = <T extends SaveCourseData>({
           })}
         >
           {title}
-          {!isEditing && isExpanded && (
+          {!isEditing && isExpanded && onEdit && (
             <Edit
               className={css({
                 stroke: 'yellow50',
@@ -103,11 +94,7 @@ const CourseAccordion = <T extends SaveCourseData>({
             />
           )}
           {isSaved && (
-            <Tag
-              color="altgreen"
-              backgroundColor="green10"
-              borderColor="green50"
-            >
+            <Tag variant="green">
               Changes Saved
               <Check
                 className={css({
@@ -119,8 +106,21 @@ const CourseAccordion = <T extends SaveCourseData>({
             </Tag>
           )}
           {isCancelled && (
-            <Tag color="altred" backgroundColor="red10" borderColor="red50">
+            <Tag variant="red">
               Changes Discarded
+              <Cancel
+                className={css({
+                  stroke: 'red100',
+                  w: '16px',
+                  h: '16px',
+                })}
+              />
+            </Tag>
+          )}
+          {isLoading && <Tag variant="yellow">Saving...</Tag>}
+          {error && (
+            <Tag variant="red">
+              {error}
               <Cancel
                 className={css({
                   stroke: 'red100',
@@ -133,45 +133,56 @@ const CourseAccordion = <T extends SaveCourseData>({
         </div>
         {isEditing ? (
           <Tag>Editing</Tag>
-        ) : isExpanded ? (
-          <UpArrow
-            className={css({
-              fill: 'yellow50',
-              w: '23px',
-              h: '23px',
-              cursor: 'pointer',
-              _hover: {
-                scale: 1.2,
-                fill: 'yellow100',
-              },
-            })}
-            onClick={toggleAccordion}
-          />
         ) : (
-          <DownArrow
-            className={css({
-              fill: 'yellow100',
-              w: '23px',
-              h: '23px',
-              cursor: 'pointer',
-              _hover: {
-                scale: 1.2,
+          !noBorder &&
+          (isExpanded ? (
+            <UpArrow
+              className={css({
+                fill: 'yellow50',
+                w: '24px',
+                h: '24px',
+                cursor: 'pointer',
+                _hover: {
+                  scale: 1.2,
+                  fill: 'yellow100',
+                },
+              })}
+              onClick={toggleAccordion}
+            />
+          ) : (
+            <DownArrow
+              className={css({
                 fill: 'yellow100',
-              },
-            })}
-            onClick={toggleAccordion}
-          />
+                w: '24px',
+                h: '24px',
+                cursor: 'pointer',
+                _hover: {
+                  scale: 1.2,
+                  fill: 'yellow100',
+                },
+              })}
+              onClick={toggleAccordion}
+            />
+          ))
         )}
       </HStack>
       {isExpanded && (
         <div
           className={css({
             display: 'flex',
-            flexDirection: 'row',
-            gap: '8px',
+            flexDirection: 'column',
+            gap: '24px',
+            w: '100%',
           })}
         >
           {children}
+          {isEditing && onSave && onCancel && (
+            <EditActions
+              onSave={onSave}
+              onCancel={onCancel}
+              isSaveDisabled={!hasChanges || isLoading}
+            />
+          )}
         </div>
       )}
     </div>
